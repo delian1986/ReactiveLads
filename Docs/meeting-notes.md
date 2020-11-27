@@ -27,3 +27,15 @@
 - https://www.atomic.io/
 - https://www.figma.com/prototyping/
 - https://proto.io/
+
+# 24.November.2020
+
+- user details - security (delete), leave only change password link button
+- remove forgot password
+  no editing of tags colors and materials
+- add balls preview screen
+
+- search box must search by all properties;
+  user should be able to add search criteria 
+  ex: by industry | by filename
+  if nothing specified -> search everything
