@@ -1,0 +1,38 @@
+Tasks
+───────────────────────────────────
+(S) - story
+(T) - task
+
+1 . (S) Backend development
+        T1)  Develop backend service methods
+             1) login 
+             2) signUp
+             3) changeUserPass
+             4) saveFilter
+             5) addToFavorites
+             6) executeFilters
+             7) executeSearch
+             
+        T2)  Implement tests
+
+2 . (S) Component development
+        T4)  Develop reusable components
+             to-do : discussion
+             textbox?, button?, link?, etc.
+        T5)  Main (sceleton) 
+             1) Header component
+             2) Main container component
+        T6)  Login               
+        T7)  Sign up
+        T8)  User details
+        T9)  VR Scan
+             1) Ball
+             2) Checkable Filter (materials , tags)
+                - Checkable entry
+             3) Color filter (colors)
+                - Color entry
+             4) Search component
+             5) VRScan explorer component
+
+3 . (S) Infrastructure & Miscelanous        
+        T10) Infrastructure Activities - everything else... (todo - discuss)
