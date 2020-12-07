@@ -1,53 +1,33 @@
 import { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "./App.css";
 import { hot } from "react-hot-loader/root";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+import { LoginForm } from "./components/user/LoginForm";
+import { RegisterForm } from "./components/user/RegisterForm";
+import Logout from "./components/user/Logout";
+import { NotFound } from "./components/notFound/NotFound";
+
+import Auth from "./services/Auth";
+
 class App extends Component {
   render() {
     return (
       <div className="app">
         <Router>
           <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signUp">
-              <SignUp />
-            </Route>
-            <Route path="/userDetails">
-              <UserDetails />
-            </Route>
-            <Route path="/vrScans">
-              <VRScans />
-            </Route>
-            <Route path="/">
-              <VRScans />
-            </Route>
+            <Route path="/login" component={LoginForm} />
+            <Route path="/signUp" component={RegisterForm} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/userDetails" component={UserDetails} />
+            <Route path="/vrScans" component={VRScans} />
+            <Route path="/" exact component={VRScans} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </div>
     );
   }
-}
-
-function Login() {
-  return (
-    <div>
-      <h2>Login Page</h2>
-      <Link to="/vrScans">Login</Link>
-      <Link to="/signUp">Sign Up</Link>
-    </div>
-  );
-}
-
-function SignUp() {
-  return (
-    <div>
-      <h2>SignUp Page</h2>
-      <Link to="/login">Back</Link>
-      <Link to="/login">Save</Link>
-    </div>
-  );
 }
 
 function UserDetails() {
@@ -58,8 +38,18 @@ function VRScans() {
   return (
     <div>
       <h2>VRScans Page</h2>
-      <Link to="/login">Logout</Link>
-      <Link to="/userDetails">User Details</Link>
+      {Auth.isUserAuthenticated() ? (
+        <>
+          <p> Hello, {Auth.getEmail()} !</p>
+          <Link to="/userDetails">User Details</Link>
+          <Link to="/logout">Logout</Link>
+        </>
+      ) : (
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/signUp">Register</Link>
+        </>
+      )}
     </div>
   );
 }

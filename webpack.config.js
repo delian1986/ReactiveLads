@@ -1,11 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 
 module.exports = {
     entry: "./src/index.js",
-    mode: "development",   
+    mode: "development",
     plugins: [
         new webpack.HotModuleReplacementPlugin(),        
         new webpack.ProvidePlugin({ "React": "react", }),
@@ -14,6 +15,9 @@ module.exports = {
             { from: "public", to: "" },
           ],
         }),
+        new Dotenv({
+            path: path.resolve(__dirname, "./.env.development"),
+        })
       ],
     module: {
         rules: [

@@ -1,13 +1,16 @@
 {
   "name": "setupreactproject",
   "version": "1.0.0",
-  "author": "aleksandar.g.ivanov@gmail.com",
+  "contributors": [
+    "aleksandar.g.ivanov@gmail.com",
+    "delian1914@gmail.com"
+  ],
   "description": "homework - setup react",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --open --mode development",
     "lint": "eslint src",
     "lint:fix": "eslint src --ext .js,.jsx --fix",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|css|md)\""
@@ -25,6 +28,8 @@
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
     "@babel/eslint-parser": "^7.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "babel-loader": "^8.2.1",
@@ -46,6 +51,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "bootstrap": "^4.5.3",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "5.2.0"
