@@ -89,41 +89,41 @@ export class RegisterForm extends Component {
               />
             </div>
 
-          <div className="form-group">
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              onChange={this.handleChange}
-              className="form-control"
-              value={this.state.password}
-              onBlur={() => {
-                this.validateField("password");
-              }}
-              placeholder="Password 4 chars min..."
-              error={this.state.passwordError}
-              required
-            />
-          </div>
+            <div className="form-group">
+              <Input
+                label="Password"
+                name="password"
+                type="password"
+                onChange={this.handleChange}
+                className="form-control"
+                value={this.state.password}
+                onBlur={() => {
+                  this.validateField("password");
+                }}
+                placeholder="Password 4 chars min..."
+                error={this.state.passwordError}
+                required
+              />
+            </div>
 
-          <div className="form-group">
-            <Input
-              label="Repeat Password"
-              name="repeatPassword"
-              type="password"
-              onChange={this.handleChange}
-              className="form-control"
-              onBlur={() => {
-                this.validateField("repeatPassword");
-              }}
-              value={this.state.repeatPassword}
-              placeholder="Repeat your password here..."
-              error={this.state.repeatPasswordError}
-            />
-          </div>
+            <div className="form-group">
+              <Input
+                label="Repeat Password"
+                name="repeatPassword"
+                type="password"
+                onChange={this.handleChange}
+                className="form-control"
+                onBlur={() => {
+                  this.validateField("repeatPassword");
+                }}
+                value={this.state.repeatPassword}
+                placeholder="Repeat your password here..."
+                error={this.state.repeatPasswordError}
+              />
+            </div>
 
-          <Button label="Register now !" type="submit" className="btn btn-block" />
-        </form>
+            <Button label="Register now !" type="submit" className="btn btn-block" />
+          </form>
         </div>
       </div>
     );

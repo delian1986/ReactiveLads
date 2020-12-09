@@ -1,23 +1,17 @@
 const path = require("path");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
-
 
 module.exports = {
-    entry: "./src/index.js",
-    mode: "development",
+    entry: path.resolve(__dirname, "..", "./src/index.js"),
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),        
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.ProvidePlugin({ "React": "react", }),
         new CopyPlugin({
-          patterns: [
-            { from: "public", to: "" },
-          ],
+            patterns: [
+                { from: "public", to: "" },
+            ],
         }),
-        new Dotenv({
-            path: path.resolve(__dirname, "./.env.development"),
-        })
       ],
     module: {
         rules: [
@@ -40,12 +34,12 @@ module.exports = {
         extensions: ["*", ".js", ".jsx"]
     },
     output: {
-        path: path.resolve(__dirname, "dist/"),
+        path: path.resolve(__dirname, "..", "dist/"),
         publicPath: "/dist/",
         filename: "bundle.js"
     },
     devServer: {
-        contentBase: path.join(__dirname, "public/"),
+        contentBase: path.join(__dirname, "..", "public/"),
         port: "3000",
         hot: true,
         publicPath: "http://localhost:3000",

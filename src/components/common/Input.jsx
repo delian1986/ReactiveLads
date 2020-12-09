@@ -9,8 +9,7 @@ export const Input = ({
   onBlur,
   value,
   error,
-  label,
-  ...props
+  label
 }) => {
   return (
     <>
