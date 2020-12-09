@@ -1,5 +1,3 @@
 export const Label = (name) => {
-    return (      
-      <label>{name}</label>      
-    );
-  };
+  return <label>{name}</label>;
+};
