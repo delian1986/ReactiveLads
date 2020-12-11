@@ -8,6 +8,8 @@ import { RegisterForm } from "./components/user/RegisterForm";
 import Logout from "./components/user/Logout";
 import { NotFound } from "./components/notFound/NotFound";
 
+import { MaterialsContainer } from "./components/materials/MaterialsContainer";
+
 import Auth from "./services/Auth";
 
 class App extends Component {
@@ -20,7 +22,7 @@ class App extends Component {
             <Route path="/signUp" component={RegisterForm} />
             <Route path="/logout" component={Logout} />
             <Route path="/userDetails" component={UserDetails} />
-            <Route path="/vrScans" component={VRScans} />
+            <Route path="/vrScans" component={MaterialsContainer} />
             <Route path="/" exact component={VRScans} />
             <Route component={NotFound} />
           </Switch>
