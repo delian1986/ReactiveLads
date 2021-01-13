@@ -3,21 +3,26 @@ import { MaterialType } from "../MaterialType";
 
 export class MaterialTypes extends Component {
   componentDidMount() {
-    console.log("component did mount");
     this.props.fetchMaterialTypes();
   }
 
   render() {
-    console.log(this.props);
     return this.props.materialTypes.length > 0 ? (
       <div>
         <h5>Material Types</h5>
         {this.props.materialTypes.map((materialType) => (
-          <MaterialType key={materialType.id} materialType={materialType} />
+          <MaterialType
+            key={materialType.id}
+            id={materialType.id}
+            name={materialType.name}
+            selectMaterialType={this.props.selectMaterialType}
+          />
         ))}
       </div>
     ) : (
-      <div>Loading...</div>
+      <div className="spinner-border" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
     );
   }
 }

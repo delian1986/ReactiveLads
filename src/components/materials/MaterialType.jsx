@@ -5,8 +5,12 @@ export class MaterialType extends Component {
     return (
       <div>
         <label>
-          <input type="checkbox" className="mr-2" />
-          {this.props.materialType.name}
+          <input
+            type="checkbox"
+            className="mr-2"
+            onClick={() => this.props.selectMaterialType(this.props.id)}
+          />
+          {this.props.name}
         </label>
       </div>
     );
