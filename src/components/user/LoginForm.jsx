@@ -1,103 +1,106 @@
-import { Component } from "react";
 import { Input } from "../common/Input";
 import { Button } from "../common/Button";
 import { Redirect } from "react-router-dom";
-import UserServices from "../../services/UserServices";
-import validate from "../../validators/UserValidator";
-import Auth from "../../services/Auth";
+import { useForm } from "../../hooks/useForm";
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import { useEffect } from "react";
+import { clearMessage } from "../../actions/message";
 
-export class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: "",
-      emailError: "",
-      passwordError: ""
-    };
-  }
-
-  handleChange = (e) => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value
+const LoginForm = (props) => {
+  const { values, errors, bindField, isValid } = useForm({
+    validations: {
+      email: {
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "Invalid email!"
+        },
+        required: {
+          message: "Email is required!"
+        }
       },
-      () => {
-        this.validateField(e.target.name);
+      password: {
+        minLength: {
+          value: 4,
+          message: "Password should be 4 chars min!"
+        },
+        required: {
+          message: "Password is required!"
+        }
       }
-    );
-  };
+    },
+    initialValues: {
+      email: "",
+      password: ""
+    }
+  });
 
-  validateField = (fieldName) => {
-    this.setState({
-      [`${fieldName}Error`]: validate[fieldName](this.state)
-    });
-  };
+  const { dispatch, history, isLoggedIn, message } = props;
 
-  handleSubmit = async (e) => {
+  useEffect(() => {
+    return () => {
+      dispatch(clearMessage());
+    };
+  }, [message]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (null !== this.state.emailError || null !== this.state.passwordError) {
-      return;
-    }
-
-    const response = await UserServices.login(this.state);
-    if (response.accessToken) {
-      Auth.saveUserInfo({
-        token: response.accessToken,
-        email: this.state.email
+    dispatch(login(values))
+      .then(() => {
+        history.push("/");
+      })
+      .catch(() => {
+        alert("login failed");
       });
-
-      this.props.history.push("/");
-    } else {
-      //TODO:: show error to user...
-      alert(`error: ${response}`);
-    }
   };
 
-  render() {
-    if (Auth.isUserAuthenticated()) {
-      return <Redirect to="/" />;
-    }
-
-    return (
-      <div className="d-flex justify-content-center align-items-center container">
-        <div className="card card-body bg-light">
-          <form onSubmit={this.handleSubmit}>
-            <h2>Login</h2>
-            <div className="form-group">
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-                onBlur={() => {
-                  this.validateField("email");
-                }}
-                error={this.state.emailError}
-                placeholder="Your email here..."
-              />
-            </div>
+  return !isLoggedIn ? (
+    <div className="d-flex justify-content-center align-items-center container">
+      <div className="card card-body bg-light">
+        {message && <p className="alert-danger">{message}</p>}
+        <form onSubmit={handleSubmit}>
+          <h2>Login</h2>
+          <div className="form-group">
             <Input
-              label="Password"
-              name="password"
-              type="password"
+              {...bindField("email")}
+              label="Email"
+              type="email"
               className="form-control"
-              value={this.state.password}
-              onChange={this.handleChange}
-              onBlur={() => {
-                this.validateField("password");
-              }}
-              error={this.state.passwordError}
-              placeholder="Your password..."
+              placeholder="Your email here..."
+              error={errors.email}
             />
-            <Button label="Login here !" className="btn btn-block" type="submit" />
-          </form>
-        </div>
+          </div>
+          <Input
+            {...bindField("password")}
+            label="Password"
+            type="password"
+            className="form-control"
+            placeholder="Password 4 chars min..."
+            error={errors.password}
+          />
+          <Button
+            label="Login here !"
+            className="btn btn-block"
+            type="submit"
+            disabled={!isValid()}
+          />
+        </form>
       </div>
-    );
-  }
+    </div>
+  ) : (
+    <Redirect to="/" />
+  );
+};
+
+function mapStateToProps(state) {
+  const { isLoggedIn } = state.auth;
+  const { message } = state.message;
+
+  return {
+    isLoggedIn,
+    message
+  };
 }
+
+export default connect(mapStateToProps)(LoginForm);

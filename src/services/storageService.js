@@ -1,4 +1,4 @@
-class Auth {
+class StorageService {
   static isUserAuthenticated() {
     return localStorage.getItem("token") !== null;
   }
@@ -23,4 +23,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default StorageService;
