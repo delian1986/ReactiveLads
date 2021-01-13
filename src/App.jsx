@@ -1,10 +1,10 @@
 import { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-import { LoginForm } from "./components/user/LoginForm";
-import { RegisterForm } from "./components/user/RegisterForm";
+import LoginForm from "./components/user/LoginForm";
+import RegisterForm from "./components/user/RegisterForm";
 import Logout from "./components/user/Logout";
 import { NotFound } from "./components/notFound/NotFound";
 
@@ -40,18 +40,6 @@ function VRScans() {
   return (
     <div>
       <h2>VRScans Page</h2>
-      {Auth.isUserAuthenticated() ? (
-        <>
-          <p> Hello, {Auth.getEmail()} !</p>
-          <Link to="/userDetails">User Details</Link>
-          <Link to="/logout">Logout</Link>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Login</Link>
-          <Link to="/signUp">Register</Link>
-        </>
-      )}
     </div>
   );
 }

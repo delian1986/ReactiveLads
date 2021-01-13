@@ -1,8 +1,13 @@
 import { PropTypes } from "prop-types";
 
-export const Button = (props) => (
-  <button type={props.type} className={props.className} onClick={props.handleClick}>
-    {props.label}
+export const Button = ({ type, className, handleClick, disabled, label }) => (
+  <button
+    type={type}
+    className={className}
+    onClick={handleClick}
+    disabled={disabled}
+  >
+    {label}
   </button>
 );
 

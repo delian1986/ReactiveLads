@@ -1,131 +1,130 @@
-import { Component } from "react";
-import UserServices from "../../services/UserServices";
+import { useForm } from "../../hooks/useForm";
 import { Input } from "../common/Input";
 import { Button } from "../common/Button";
-import validate from "../../validators/UserValidator";
-import Auth from "../../services/Auth";
 import { Redirect } from "react-router-dom";
+import { register } from "../../actions/auth";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { clearMessage } from "../../actions/message";
 
-export class RegisterForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+const RegisterForm = (props) => {
+  const { values, errors, bindField, isValid } = useForm({
+    validations: {
+      email: {
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "Invalid email!"
+        },
+        required: {
+          message: "Email is required!"
+        }
+      },
+      password: {
+        minLength: {
+          value: 4,
+          message: "Password should be 4 chars min!"
+        },
+        required: {
+          message: "Password is required!"
+        }
+      },
+      repeatPassword: {
+        equals: {
+          value: "password",
+          message: "Passwords must match!"
+        },
+        required: {
+          message: "Password is required"
+        }
+      }
+    },
+    initialValues: {
       email: "",
       password: "",
-      repeatPassword: "",
-      emailError: "",
-      passwordError: "",
-      repeatPasswordError: ""
+      repeatPassword: ""
+    }
+  });
+
+  const { dispatch, history, isLoggedIn, message } = props;
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearMessage());
     };
-  }
+  }, [message]);
 
-  handleChange = (e) => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value
-      },
-      () => {
-        this.validateField(e.target.name);
-      }
-    );
-  };
-
-  validateField = (fieldName) => {
-    this.setState({
-      [`${fieldName}Error`]: validate[fieldName](this.state)
-    });
-  };
-
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      null !== this.state.emailError ||
-      null !== this.state.passwordError ||
-      null !== this.state.repeatPasswordError
-    ) {
-      return;
-    }
-
-    const response = await UserServices.register(this.state);
-    if (response.accessToken) {
-      Auth.saveUserInfo({
-        token: response.accessToken,
-        email: this.state.email
+    dispatch(register(values))
+      .then(() => {
+        history.push("/");
+      })
+      .catch(() => {
+        alert("Register failed");
       });
-
-      this.props.history.push("/");
-    } else {
-      //TODO:: show error to user...
-      alert(`error: ${response}`);
-    }
   };
 
-  render() {
-    if (Auth.isUserAuthenticated()) {
-      return <Redirect to="/" />;
-    }
+  return !isLoggedIn ? (
+    <div className="d-flex justify-content-center align-items-center container">
+      <div className="card card-body bg-light">
+        {message && <p className="alert-danger">{message}</p>}
+        <form onSubmit={handleSubmit}>
+          <h2>Register</h2>
+          <div className="form-group">
+            <Input
+              {...bindField("email")}
+              label="Email"
+              type="email"
+              className="form-control"
+              placeholder="Your email here..."
+              error={errors.email}
+            />
+          </div>
 
-    return (
-      <div className="d-flex justify-content-center align-items-center container">
-        <div className="card card-body bg-light">
-          <form onSubmit={this.handleSubmit}>
-            <h2>Register</h2>
-            <div className="form-group">
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                className="form-control"
-                onChange={this.handleChange}
-                value={this.state.email}
-                onBlur={() => {
-                  this.validateField("email");
-                }}
-                placeholder="Your email here..."
-                error={this.state.emailError}
-                required
-              />
-            </div>
+          <div className="form-group">
+            <Input
+              {...bindField("password")}
+              label="Password"
+              type="password"
+              className="form-control"
+              placeholder="Password 4 chars min..."
+              error={errors.password}
+            />
+          </div>
 
-            <div className="form-group">
-              <Input
-                label="Password"
-                name="password"
-                type="password"
-                onChange={this.handleChange}
-                className="form-control"
-                value={this.state.password}
-                onBlur={() => {
-                  this.validateField("password");
-                }}
-                placeholder="Password 4 chars min..."
-                error={this.state.passwordError}
-                required
-              />
-            </div>
+          <div className="form-group">
+            <Input
+              {...bindField("repeatPassword")}
+              label="Repeat Password"
+              type="password"
+              className="form-control"
+              placeholder="Repeat your password here..."
+              error={errors.repeatPassword}
+            />
+          </div>
 
-            <div className="form-group">
-              <Input
-                label="Repeat Password"
-                name="repeatPassword"
-                type="password"
-                onChange={this.handleChange}
-                className="form-control"
-                onBlur={() => {
-                  this.validateField("repeatPassword");
-                }}
-                value={this.state.repeatPassword}
-                placeholder="Repeat your password here..."
-                error={this.state.repeatPasswordError}
-              />
-            </div>
-
-            <Button label="Register now !" type="submit" className="btn btn-block" />
-          </form>
-        </div>
+          <Button
+            label="Register now !"
+            type="submit"
+            className="btn btn-block"
+            disabled={!isValid()}
+          />
+        </form>
       </div>
-    );
-  }
+    </div>
+  ) : (
+    <Redirect to="/" />
+  );
+};
+
+function mapStateToProps(state) {
+  const { message, email } = state.message;
+
+  return {
+    message,
+    email
+  };
 }
+
+export default connect(mapStateToProps)(RegisterForm);

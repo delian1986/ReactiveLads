@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 
 export const Input = ({
+  id,
   name,
   type,
   placeholder,
@@ -15,7 +16,7 @@ export const Input = ({
     <>
       <label htmlFor={name}>{label}</label>
       <input
-        id={name}
+        id={id}
         name={name}
         type={type}
         placeholder={placeholder}
@@ -41,5 +42,6 @@ Input.propTypes = {
   className: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
+  id: PropTypes.string
 };

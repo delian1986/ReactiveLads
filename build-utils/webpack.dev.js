@@ -9,4 +9,9 @@ module.exports = {
         })
     ],
     devtool: "eval-source-map",
+    resolve: {
+        alias: {
+            "react-dom": "@hot-loader/react-dom"
+        }
+    }
 };
