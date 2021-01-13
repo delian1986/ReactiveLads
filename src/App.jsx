@@ -1,16 +1,13 @@
 import { Component } from "react";
-import { Switch, Route } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginForm from "./components/user/LoginForm";
 import RegisterForm from "./components/user/RegisterForm";
 import Logout from "./components/user/Logout";
 import { NotFound } from "./components/notFound/NotFound";
 
 import { MaterialsContainer } from "./components/materials/MaterialsContainer";
-
-import Auth from "./services/Auth";
 
 class App extends Component {
   render() {
