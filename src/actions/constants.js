@@ -8,5 +8,9 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const FETCH_MATERIAL_TYPES = "FETCH_MATERIAL_TYPES";
+export const FETCH_COLORS = "FETCH_COLORS";
+export const FETCH_TAGS = "FETCH_TAGS";
 
 export const SELECT_MATERIAL_TYPE = "SELECT_MATERIAL_TYPE";
+export const SELECT_COLOR = "SELECT_COLOR";
+export const SELECT_TAG = "SELECT_TAG";
