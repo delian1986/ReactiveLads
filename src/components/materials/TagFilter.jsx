@@ -2,7 +2,6 @@ import { Component } from "react";
 
 export class TagFilter extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <label>

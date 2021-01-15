@@ -1,8 +1,8 @@
-import { FETCH_COLORS } from "./constants";
+import { ADD_COLORS } from "./constants";
 
-export const fetchColors = (colors) => {
+export const addColors = (colors) => {
   return {
-    type: FETCH_COLORS,
+    type: ADD_COLORS,
     payload: colors
   };
 };

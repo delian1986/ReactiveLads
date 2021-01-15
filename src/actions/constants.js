@@ -7,10 +7,13 @@ export const LOGOUT = "LOGOUT";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
-export const FETCH_MATERIAL_TYPES = "FETCH_MATERIAL_TYPES";
-export const FETCH_COLORS = "FETCH_COLORS";
-export const FETCH_TAGS = "FETCH_TAGS";
+export const ADD_MATERIAL_TYPES = "ADD_MATERIAL_TYPES";
+export const ADD_COLORS = "ADD_COLORS";
+export const ADD_TAGS = "ADD_TAGS";
 
 export const SELECT_MATERIAL_TYPE = "SELECT_MATERIAL_TYPE";
 export const SELECT_COLOR = "SELECT_COLOR";
 export const SELECT_TAG = "SELECT_TAG";
+
+export const ADD_VR_SCANS = "ADD_VR_SCANS";
+export const RESET_VR_SCANS = "RESET_VR_SCANS";
