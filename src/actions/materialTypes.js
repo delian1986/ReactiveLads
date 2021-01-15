@@ -1,8 +1,8 @@
-import { FETCH_MATERIAL_TYPES } from "./constants";
+import { ADD_MATERIAL_TYPES } from "./constants";
 
-export const fetchMaterialTypes = (materials) => {
+export const addMaterialTypes = (materials) => {
   return {
-    type: FETCH_MATERIAL_TYPES,
+    type: ADD_MATERIAL_TYPES,
     payload: materials
   };
 };

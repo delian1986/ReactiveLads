@@ -1,8 +1,8 @@
-import { FETCH_TAGS } from "./constants";
+import { ADD_TAGS } from "./constants";
 
-export const fetchTags = (tags) => {
+export const addTags = (tags) => {
   return {
-    type: FETCH_TAGS,
+    type: ADD_TAGS,
     payload: tags
   };
 };

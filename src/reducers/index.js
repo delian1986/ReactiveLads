@@ -5,6 +5,8 @@ import materialTypes from "./materialTypes";
 import colors from "./colors";
 import filters from "./filters";
 import tags from "./tags";
+import vrScans from "./vrScans";
+import page from "./page";
 
 export default combineReducers({
   auth,
@@ -12,5 +14,7 @@ export default combineReducers({
   materialTypes,
   colors,
   tags,
-  filters
+  filters,
+  vrScans,
+  page
 });

@@ -1,8 +1,8 @@
-import { FETCH_COLORS } from "../actions/constants";
+import { ADD_COLORS } from "../actions/constants";
 
 export default (state = [], action) => {
   switch (action.type) {
-    case FETCH_COLORS:
+    case ADD_COLORS:
       return [...state, ...action.payload];
     default:
       return state;

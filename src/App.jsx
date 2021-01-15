@@ -6,7 +6,7 @@ import LoginForm from "./components/user/LoginForm";
 import RegisterForm from "./components/user/RegisterForm";
 import Logout from "./components/user/Logout";
 import { NotFound } from "./components/notFound/NotFound";
-
+import Header from "./components/common/header";
 import { MaterialsContainer } from "./components/materials/MaterialsContainer";
 
 class App extends Component {
@@ -14,6 +14,7 @@ class App extends Component {
     return (
       <div className="app">
         <Router>
+          <Header />
           <Switch>
             <Route path="/login" component={LoginForm} />
             <Route path="/signUp" component={RegisterForm} />
