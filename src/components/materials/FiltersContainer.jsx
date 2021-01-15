@@ -1,20 +1,21 @@
 import { Component } from "react";
 import { ColorFilters } from "./ColorFilters";
 import { Favorites } from "./Favorites";
-import { MaterialTypes } from "./MaterialTypes";
+//import { MaterialTypes } from "./MaterialTypes";
+import MaterialTypes from "../../containers/MaterialTypes";
 import { SaveFilter } from "./SaveFilter";
 import { TagsFilters } from "./TagsFilters";
 
 export class FiltersContainer extends Component {
-	render() {
-		return (
-			<div className="h-100 overflow-auto">
-				<SaveFilter />
-				<Favorites />
-				<MaterialTypes />
-				<ColorFilters />
-				<TagsFilters />
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div className="h-100 overflow-auto">
+        <SaveFilter />
+        <Favorites />
+        <MaterialTypes />
+        <ColorFilters />
+        <TagsFilters />
+      </div>
+    );
+  }
 }
