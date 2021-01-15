@@ -1,4 +1,8 @@
-import { SELECT_MATERIAL_TYPE } from "../actions/constants";
+import {
+  SELECT_MATERIAL_TYPE,
+  SELECT_COLOR,
+  SELECT_TAG
+} from "../actions/constants";
 
 const initialState = {
   selectedMaterialTypes: [],
@@ -20,6 +24,30 @@ export default (state = initialState, action) => {
         return {
           ...state,
           selectedMaterialTypes: [...state.selectedMaterialTypes, action.payload]
+        };
+      }
+    case SELECT_COLOR:
+      if (state.selectedColors.includes(action.payload)) {
+        return {
+          ...state,
+          selectedColors: state.selectedColors.filter((c) => c !== action.payload)
+        };
+      } else {
+        return {
+          ...state,
+          selectedColors: [...state.selectedColors, action.payload]
+        };
+      }
+    case SELECT_TAG:
+      if (state.selectedTags.includes(action.payload)) {
+        return {
+          ...state,
+          selectedTags: state.selectedTags.filter((c) => c !== action.payload)
+        };
+      } else {
+        return {
+          ...state,
+          selectedTags: [...state.selectedTags, action.payload]
         };
       }
     default:

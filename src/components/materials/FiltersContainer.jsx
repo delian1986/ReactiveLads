@@ -1,10 +1,9 @@
 import { Component } from "react";
-import { ColorFilters } from "./ColorFilters";
+import ColorFilters from "../../containers/Colors";
 import { Favorites } from "./Favorites";
-//import { MaterialTypes } from "./MaterialTypes";
 import MaterialTypes from "../../containers/MaterialTypes";
 import { SaveFilter } from "./SaveFilter";
-import { TagsFilters } from "./TagsFilters";
+import Tags from "../../containers/Tags";
 
 export class FiltersContainer extends Component {
   render() {
@@ -14,7 +13,7 @@ export class FiltersContainer extends Component {
         <Favorites />
         <MaterialTypes />
         <ColorFilters />
-        <TagsFilters />
+        <Tags />
       </div>
     );
   }
