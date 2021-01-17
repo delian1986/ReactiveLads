@@ -9,11 +9,13 @@ import Header from "./components/common/header";
 import { MaterialsContainer } from "./components/materials/MaterialsContainer";
 import PrivateRoute from "./containers/PrivateRoute";
 
+const basePath = process.env.BASE_PATH;
+
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router>
+        <Router basename={basePath}>
           <Header />
           <Switch>
             <Route path="/login" component={Login} />
