@@ -2,12 +2,9 @@ import { Input } from "../common/Input";
 import { Button } from "../common/Button";
 import { Redirect } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import { connect } from "react-redux";
-import { login } from "../../actions/auth";
-import { useEffect } from "react";
-import { clearMessage } from "../../actions/message";
+import { useEffect, useState } from "react";
 
-const LoginForm = (props) => {
+export const LoginForm = ({ isLoggedIn, message, login, isPending }) => {
   const { values, errors, bindField, isValid } = useForm({
     validations: {
       email: {
@@ -35,72 +32,66 @@ const LoginForm = (props) => {
     }
   });
 
-  const { dispatch, history, isLoggedIn, message } = props;
+  const [isLogging, setIsLogging] = useState(isPending);
 
   useEffect(() => {
-    return () => {
-      dispatch(clearMessage());
-    };
-  }, [message]);
+    setIsLogging(isPending);
+  }, [isPending]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(login(values))
-      .then(() => {
-        history.push("/");
-      })
-      .catch(() => {
-        alert("login failed");
-      });
+    login(values);
   };
 
   return !isLoggedIn ? (
-    <div className="d-flex justify-content-center align-items-center container">
-      <div className="card card-body bg-light">
-        {message && <p className="alert-danger">{message}</p>}
-        <form onSubmit={handleSubmit}>
-          <h2>Login</h2>
-          <div className="form-group">
-            <Input
-              {...bindField("email")}
-              label="Email"
-              type="email"
-              className="form-control"
-              placeholder="Your email here..."
-              error={errors.email}
-            />
+    <div className="container h-100">
+      <div className="row h-100 justify-content-center align-items-center">
+        <div className="col-6 mx-auto">
+          <div className="card card-body bg-light">
+            <form onSubmit={handleSubmit}>
+              <h2>Login</h2>
+              <div className="form-group">
+                <Input
+                  {...bindField("email")}
+                  label="Email"
+                  type="email"
+                  className="form-control"
+                  placeholder="Your email here..."
+                  error={errors.email}
+                />
+              </div>
+              <Input
+                {...bindField("password")}
+                label="Password"
+                type="password"
+                className="form-control"
+                placeholder="Password 4 chars min..."
+                error={errors.password}
+              />
+              <div className="col text-center">
+                <Button
+                  label={
+                    (isLogging && (
+                      <span className="spinner-border spinner-border-sm mr-1" />
+                    )) ||
+                    "Login here !"
+                  }
+                  className="btn btn-block"
+                  type="submit"
+                  disabled={!isValid()}
+                />
+              </div>
+            </form>
+            {message.message && (
+              <div className="alert alert-danger" role="alert">
+                {message.message}
+              </div>
+            )}
           </div>
-          <Input
-            {...bindField("password")}
-            label="Password"
-            type="password"
-            className="form-control"
-            placeholder="Password 4 chars min..."
-            error={errors.password}
-          />
-          <Button
-            label="Login here !"
-            className="btn btn-block"
-            type="submit"
-            disabled={!isValid()}
-          />
-        </form>
+        </div>
       </div>
     </div>
   ) : (
     <Redirect to="/" />
   );
 };
-
-function mapStateToProps(state) {
-  const { isLoggedIn } = state.auth;
-  const { message } = state.message;
-
-  return {
-    isLoggedIn,
-    message
-  };
-}
-
-export default connect(mapStateToProps)(LoginForm);
