@@ -7,6 +7,11 @@ class StorageService {
     localStorage.clear();
   }
 
+  static clearUser() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+  }
+
   static saveUserInfo(data) {
     const { token, email } = data;
 
