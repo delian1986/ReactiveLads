@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Button } from "../common/Button";
 
 export const Logout = ({ logout }) => (
@@ -8,3 +9,7 @@ export const Logout = ({ logout }) => (
     label="Logout"
   />
 );
+
+Logout.propTypes = {
+  logout: PropTypes.func
+};

@@ -20,6 +20,7 @@ const Header = (props) => {
 };
 
 //todo: bootstrap styles
+//todo: propTypes
 
 function mapStateToProps(state) {
   const { email, isLoggedIn } = state.auth;
