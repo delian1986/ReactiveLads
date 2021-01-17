@@ -2,12 +2,9 @@ import { useForm } from "../../hooks/useForm";
 import { Input } from "../common/Input";
 import { Button } from "../common/Button";
 import { Redirect } from "react-router-dom";
-import { register } from "../../actions/auth";
-import { connect } from "react-redux";
-import { useEffect } from "react";
-import { clearMessage } from "../../actions/message";
+import { useEffect, useState } from "react";
 
-const RegisterForm = (props) => {
+export const RegisterForm = ({ isLoggedIn, register, message, isPending }) => {
   const { values, errors, bindField, isValid } = useForm({
     validations: {
       email: {
@@ -45,86 +42,79 @@ const RegisterForm = (props) => {
     }
   });
 
-  const { dispatch, history, isLoggedIn, message } = props;
+  const [isRegistering, setIsRegistering] = useState(isPending);
 
   useEffect(() => {
-    return () => {
-      dispatch(clearMessage());
-    };
-  }, [message]);
+    setIsRegistering(isPending);
+  }, [isPending]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(register(values))
-      .then(() => {
-        history.push("/");
-      })
-      .catch(() => {
-        alert("Register failed");
-      });
+    register(values);
   };
 
   return !isLoggedIn ? (
-    <div className="d-flex justify-content-center align-items-center container">
-      <div className="card card-body bg-light">
-        {message && <p className="alert-danger">{message}</p>}
-        <form onSubmit={handleSubmit}>
-          <h2>Register</h2>
-          <div className="form-group">
-            <Input
-              {...bindField("email")}
-              label="Email"
-              type="email"
-              className="form-control"
-              placeholder="Your email here..."
-              error={errors.email}
-            />
-          </div>
+    <div className="container h-100">
+      <div className="row h-100 justify-content-center align-items-center">
+        <div className="col-6 mx-auto">
+          <div className="card card-body bg-light">
+            <form onSubmit={handleSubmit}>
+              <h2>Register</h2>
+              <div className="form-group">
+                <Input
+                  {...bindField("email")}
+                  label="Email"
+                  type="email"
+                  className="form-control"
+                  placeholder="Your email here..."
+                  error={errors.email}
+                />
+              </div>
 
-          <div className="form-group">
-            <Input
-              {...bindField("password")}
-              label="Password"
-              type="password"
-              className="form-control"
-              placeholder="Password 4 chars min..."
-              error={errors.password}
-            />
-          </div>
+              <div className="form-group">
+                <Input
+                  {...bindField("password")}
+                  label="Password"
+                  type="password"
+                  className="form-control"
+                  placeholder="Password 4 chars min..."
+                  error={errors.password}
+                />
+              </div>
 
-          <div className="form-group">
-            <Input
-              {...bindField("repeatPassword")}
-              label="Repeat Password"
-              type="password"
-              className="form-control"
-              placeholder="Repeat your password here..."
-              error={errors.repeatPassword}
-            />
-          </div>
+              <div className="form-group">
+                <Input
+                  {...bindField("repeatPassword")}
+                  label="Repeat Password"
+                  type="password"
+                  className="form-control"
+                  placeholder="Repeat your password here..."
+                  error={errors.repeatPassword}
+                />
+              </div>
 
-          <Button
-            label="Register now !"
-            type="submit"
-            className="btn btn-block"
-            disabled={!isValid()}
-          />
-        </form>
+              <Button
+                label={
+                  (isRegistering && (
+                    <span className="spinner-border spinner-border-sm mr-1" />
+                  )) ||
+                  "Register now !"
+                }
+                type="submit"
+                className="btn btn-block"
+                disabled={!isValid()}
+              />
+            </form>
+            {message.message && (
+              <div className="alert alert-danger" role="alert">
+                {message.message}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   ) : (
     <Redirect to="/" />
   );
 };
-
-function mapStateToProps(state) {
-  const { message, email } = state.message;
-
-  return {
-    message,
-    email
-  };
-}
-
-export default connect(mapStateToProps)(RegisterForm);

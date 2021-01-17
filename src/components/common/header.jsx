@@ -1,5 +1,6 @@
 import { NavLink as Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Logout from "../../containers/Logout";
 
 const Header = (props) => {
   const { email, isLoggedIn } = props;
@@ -8,7 +9,7 @@ const Header = (props) => {
     <>
       <p> Hello, {email} !</p>
       <Link to="/userDetails">User Details</Link>
-      <Link to="/logout">Logout</Link>
+      <Logout />
     </>
   ) : (
     <>

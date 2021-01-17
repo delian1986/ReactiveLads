@@ -1,85 +1,53 @@
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAIL,
   LOGIN_SUCCESS,
-  LOGIN_FAIL,
   LOGOUT,
-  SET_MESSAGE
+  LOGIN_FAIL,
+  REGISTER_FAIL,
+  START_PENDING,
+  STOP_PENDING
 } from "./constants";
 
-import StorageService from "../services/storageService";
-import { userService } from "../services/userService";
-
-export const register = ({ email, password }) => (dispatch) => {
-  return userService.register({ email, password }).then(
-    (response) => {
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: {
-          token: response.accessToken,
-          email
-        }
-      });
-
-      StorageService.saveUserInfo({
-        token: response.accessToken,
-        email
-      });
-
-      return Promise.resolve();
-    },
-    (error) => {
-      const message = error.message;
-
-      dispatch({
-        type: REGISTER_FAIL
-      });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: message
-      });
-
-      return Promise.reject();
-    }
-  );
+export const register = (user) => {
+  return {
+    type: REGISTER_SUCCESS,
+    payload: user
+  };
 };
 
-export const login = ({ email, password }) => (dispatch) => {
-  return userService.login({ email, password }).then(
-    (data) => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: {
-          token: data.accessToken,
-          email
-        }
-      });
-
-      StorageService.saveUserInfo({
-        token: data.accessToken,
-        email
-      });
-
-      return Promise.resolve();
-    },
-    (error) => {
-      const message = error.message;
-
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: message
-      });
-
-      return Promise.reject();
-    }
-  );
+export const login = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: user
+  };
 };
 
-export const logout = () => (dispatch) => {
-  dispatch({
+export const startPending = () => {
+  return {
+    type: START_PENDING
+  };
+};
+
+export const stopPending = () => {
+  return {
+    type: STOP_PENDING
+  };
+};
+
+export const registerFailed = () => {
+  return {
+    type: REGISTER_FAIL
+  };
+};
+
+export const logout = () => {
+  return {
     type: LOGOUT
-  });
+  };
+};
 
-  StorageService.clear();
+export const loginFailed = () => {
+  return {
+    type: LOGIN_FAIL
+  };
 };

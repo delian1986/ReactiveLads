@@ -1,15 +1,10 @@
-import { Redirect } from "react-router-dom";
-import { logout } from "../../actions/auth";
-import { useEffect } from "react";
-import { connect } from "react-redux";
+import { Button } from "../common/Button";
 
-const Logout = (props) => {
-  const { dispatch } = props;
-  useEffect(() => {
-    dispatch(logout());
-  });
-
-  return <Redirect to="/" />;
-};
-
-export default connect()(Logout);
+export const Logout = ({ logout }) => (
+  <Button
+    handleClick={logout}
+    type="button"
+    className="btn btn-link"
+    label="Logout"
+  />
+);
