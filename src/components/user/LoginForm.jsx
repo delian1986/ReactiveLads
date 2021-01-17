@@ -3,6 +3,7 @@ import { Button } from "../common/Button";
 import { Redirect } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 export const LoginForm = ({ isLoggedIn, message, login, isPending }) => {
   const { values, errors, bindField, isValid } = useForm({
@@ -94,4 +95,10 @@ export const LoginForm = ({ isLoggedIn, message, login, isPending }) => {
   ) : (
     <Redirect to="/" />
   );
+};
+
+LoginForm.propTypes = {
+  message: PropTypes.object,
+  login: PropTypes.func,
+  isPending: PropTypes.bool
 };
