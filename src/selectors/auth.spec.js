@@ -1,4 +1,4 @@
-import { getIsAuthPending, getLoggedInStatus } from "./index";
+import { getIsAuthPending, getLoggedInStatus } from "./auth";
 
 describe("auth selectors", () => {
   it("should return getLoggedInStatus", function () {
@@ -7,7 +7,7 @@ describe("auth selectors", () => {
     };
 
     const selected = getLoggedInStatus.resultFunc(mockParams);
-    expect(typeof selected.isLoggedIn).toBe("boolean");
+    expect(selected).toEqual(mockParams);
   });
 
   it("should return getIsAuthPending", function () {
@@ -16,6 +16,6 @@ describe("auth selectors", () => {
     };
 
     const selected = getIsAuthPending.resultFunc(mockParams);
-    expect(typeof selected.isPending).toBe("boolean");
+    expect(selected).toEqual(mockParams);
   });
 });
