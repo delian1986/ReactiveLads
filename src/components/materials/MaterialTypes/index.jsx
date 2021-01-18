@@ -33,29 +33,6 @@ export class MaterialTypes extends Component {
       </>
     );
   }
-
-  // render() {
-  //   const { materialTypes, selectMaterialType } = this.props;
-  //   return materialTypes.length > 0 ? (
-  //     <div>
-  //       <h5>Material Types</h5>
-  //       {materialTypes.map((materialType) => (
-  //         <MaterialType
-  //           key={materialType.id}
-  //           id={materialType.id}
-  //           name={materialType.name}
-  //           selectMaterialType={selectMaterialType}
-  //         />
-  //       ))}
-  //     </div>
-  //   ) : (
-  //     <div className="d-flex justify-content-center">
-  //       <div className="spinner-border" role="status">
-  //         <span className="sr-only">Loading...</span>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 }
 
 MaterialTypes.propTypes = {
