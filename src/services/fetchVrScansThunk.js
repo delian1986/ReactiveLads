@@ -11,9 +11,15 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const pageToLoad = state.page + 1;
 
   let filter = "";
-  if (state.filters.selectedColors.length) {
-    filter += state.selectedColors.map((c) => `colors=${c}&`);
-  }
+  state.filters.selectedMaterialTypes.forEach((c) => {
+    filter += `materialTypeId=${c}&`;
+  });
+  state.filters.selectedColors.forEach((c) => {
+    filter += `colors_like=(^|,)${c}(,|$)&`;
+  });
+  state.filters.selectedTags.forEach((c) => {
+    filter += `tags_like=(^|,)${c}(,|$)&`;
+  });
 
   const pagination = `_page=${pageToLoad}&_limit=18&`;
 
