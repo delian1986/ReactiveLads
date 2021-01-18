@@ -38,10 +38,10 @@ Input.defaultProps = {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.oneOf(["number", "text", "password", "email"]),
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   className: PropTypes.string,
   value: PropTypes.any,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   label: PropTypes.string,
   id: PropTypes.string,
   onBlur: PropTypes.func,

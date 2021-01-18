@@ -10,25 +10,26 @@ describe("Test rendering component", () => {
 
 describe("Test passing props to <Input/>", () => {
   it("should accept button props", function () {
-    const mockFn = jest.fn();
+    const mockBlur = jest.fn();
+    const mockChange = jest.fn();
     const input = mount(
       <Input
         id="1"
         name="text"
-        type="submit"
+        type="text"
         placeholder="mock"
-        onChange={mockFn}
+        onChange={mockChange}
         value="test"
-        onBlur={mockFn}
+        onBlur={mockBlur}
         className="test"
         error="error"
       />
     );
     expect(input.props().id).toEqual("1");
     expect(input.props().name).toEqual("text");
-    expect(input.props().onChange).toEqual(mockFn);
+    expect(input.props().onChange).toEqual(mockChange);
     expect(input.props().value).toEqual("test");
-    expect(input.props().onBlur).toEqual(mockFn);
+    expect(input.props().onBlur).toEqual(mockBlur);
     expect(input.props().className).toEqual("test");
     expect(input.props().error).toEqual("error");
   });
@@ -42,7 +43,7 @@ describe("Test <Input /> component logic", () => {
       <Input
         id="1"
         name="text"
-        type="submit"
+        type="text"
         placeholder="mock"
         onChange={mockChange()}
         value="test"
