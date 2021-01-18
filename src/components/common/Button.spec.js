@@ -27,3 +27,13 @@ describe("Test passing props to components", () => {
     expect(button.props().label).toEqual("label");
   });
 });
+
+describe("Test <Button /> component logic", () => {
+  it("should click button", () => {
+    const mockFn = jest.fn();
+    const wrapper = shallow(<Button className="mock" onClick={mockFn()} />);
+    wrapper.find(".mock").simulate("click");
+    console.log(wrapper.find(".mock").simulate("click"));
+    expect(mockFn).toHaveBeenCalled();
+  });
+});
