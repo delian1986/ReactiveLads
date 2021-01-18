@@ -2,13 +2,13 @@ import { Button } from "./Button";
 import { shallow, mount } from "enzyme";
 
 describe("Test rendering component", () => {
-  it("should render question component without crashing", () => {
+  it("should render <Button/> component without crashing", () => {
     shallow(<Button />);
   });
 });
 
 describe("Test passing props to components", () => {
-  it("should accept button props", function () {
+  it("should accept <Button/> props", function () {
     const mockFn = jest.fn();
     const button = mount(
       <Button
@@ -33,7 +33,6 @@ describe("Test <Button /> component logic", () => {
     const mockFn = jest.fn();
     const wrapper = shallow(<Button className="mock" onClick={mockFn()} />);
     wrapper.find(".mock").simulate("click");
-    console.log(wrapper.find(".mock").simulate("click"));
     expect(mockFn).toHaveBeenCalled();
   });
 });
