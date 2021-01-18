@@ -1,10 +1,11 @@
 import { addTags } from "../actions/tags";
-import StorageService from "./storageService";
 const API_BASE_URL = process.env.API_BASE_URL;
+import { getToken } from "../selectors/index";
 
-const token = StorageService.getToken();
+const fetchTagsThunk = () => async (dispatch, getState) => {
+  const state = getState();
+  const token = getToken(state);
 
-const fetchTagsThunk = () => async (dispatch) => {
   await fetch(`${API_BASE_URL}/tags`, {
     method: "GET",
     headers: {

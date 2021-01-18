@@ -1,10 +1,11 @@
 import { addColors } from "../actions/colors";
-import StorageService from "./storageService";
 const API_BASE_URL = process.env.API_BASE_URL;
+import { getToken } from "../selectors/index";
 
-const token = StorageService.getToken();
+const fetchColorsThunk = () => async (dispatch, getState) => {
+  const state = getState();
+  const token = getToken(state);
 
-const fetchColorsThunk = () => async (dispatch) => {
   await fetch(`${API_BASE_URL}/colors`, {
     method: "GET",
     headers: {

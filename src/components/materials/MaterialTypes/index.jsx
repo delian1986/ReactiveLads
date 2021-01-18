@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { MaterialType } from "../MaterialType";
+import PropTypes from "prop-types";
 
 export class MaterialTypes extends Component {
   componentDidMount() {
@@ -7,22 +8,64 @@ export class MaterialTypes extends Component {
   }
 
   render() {
-    return this.props.materialTypes.length > 0 ? (
-      <div>
-        <h5>Material Types</h5>
-        {this.props.materialTypes.map((materialType) => (
-          <MaterialType
-            key={materialType.id}
-            id={materialType.id}
-            name={materialType.name}
-            selectMaterialType={this.props.selectMaterialType}
-          />
-        ))}
-      </div>
-    ) : (
-      <div className="spinner-border" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+    const { materialTypes, selectMaterialType } = this.props;
+    return (
+      <>
+        <h5>MaterialTypes</h5>
+        {materialTypes.length > 0 ? (
+          <div>
+            {materialTypes.map((materialType) => (
+              <MaterialType
+                key={materialType.id}
+                id={materialType.id}
+                name={materialType.name}
+                selectMaterialType={selectMaterialType}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
+
+  // render() {
+  //   const { materialTypes, selectMaterialType } = this.props;
+  //   return materialTypes.length > 0 ? (
+  //     <div>
+  //       <h5>Material Types</h5>
+  //       {materialTypes.map((materialType) => (
+  //         <MaterialType
+  //           key={materialType.id}
+  //           id={materialType.id}
+  //           name={materialType.name}
+  //           selectMaterialType={selectMaterialType}
+  //         />
+  //       ))}
+  //     </div>
+  //   ) : (
+  //     <div className="d-flex justify-content-center">
+  //       <div className="spinner-border" role="status">
+  //         <span className="sr-only">Loading...</span>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 }
+
+MaterialTypes.propTypes = {
+  materialTypes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      selectMaterialType: PropTypes.func
+    })
+  ),
+  selectMaterialType: PropTypes.func.isRequired,
+  fetchMaterialTypes: PropTypes.func.isRequired
+};
