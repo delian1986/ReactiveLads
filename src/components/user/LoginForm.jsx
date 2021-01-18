@@ -1,11 +1,10 @@
 import { Input } from "../common/Input";
 import { Button } from "../common/Button";
-import { Redirect } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-export const LoginForm = ({ isLoggedIn, message, login, isPending }) => {
+export const LoginForm = ({ message, login, isPending }) => {
   const { values, errors, bindField, isValid } = useForm({
     validations: {
       email: {
@@ -44,7 +43,7 @@ export const LoginForm = ({ isLoggedIn, message, login, isPending }) => {
     login(values);
   };
 
-  return !isLoggedIn ? (
+  return (
     <div className="container h-100">
       <div className="row h-100 justify-content-center align-items-center">
         <div className="col-6 mx-auto">
@@ -92,8 +91,6 @@ export const LoginForm = ({ isLoggedIn, message, login, isPending }) => {
         </div>
       </div>
     </div>
-  ) : (
-    <Redirect to="/" />
   );
 };
 
