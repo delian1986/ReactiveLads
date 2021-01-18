@@ -3,8 +3,10 @@ import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
 import {
   LOGIN_FAIL,
+  LOGIN_SUCCESS,
   LOGOUT,
   REGISTER_FAIL,
+  REGISTER_SUCCESS,
   SET_MESSAGE,
   START_PENDING,
   STOP_PENDING
@@ -20,6 +22,23 @@ describe("async auth actions", () => {
     fetchMock.restore();
   });
 
+  it("creates actions on login success", function () {
+    const userCredentials = { email: "valid@valid.bg", password: "1234" };
+    const store = mockStore({ auth: {} });
+    const expectedActions = [START_PENDING, STOP_PENDING, LOGIN_SUCCESS];
+
+    fetchMock.postOnce(`${API_BASE_URL}/login`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      accessToken: "successful_auth"
+    });
+    return store.dispatch(loginThunk(userCredentials)).then(() => {
+      const actualActions = store.getActions().map((action) => action.type);
+      expect(actualActions).toEqual(expectedActions);
+    });
+  });
+
   it("creates actions on login fail", function () {
     const userCredentials = { email: "invalid@invalid.bg", password: "123" };
     const store = mockStore({ auth: {} });
@@ -29,9 +48,26 @@ describe("async auth actions", () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(userCredentials)
+      message: "Login fail"
     });
     return store.dispatch(loginThunk(userCredentials)).then(() => {
+      const actualActions = store.getActions().map((action) => action.type);
+      expect(actualActions).toEqual(expectedActions);
+    });
+  });
+
+  it("creates actions on register success", function () {
+    const userCredentials = { email: "valid@valid.bg", password: "1233" };
+    const store = mockStore({ auth: {} });
+    const expectedActions = [START_PENDING, STOP_PENDING, REGISTER_SUCCESS];
+
+    fetchMock.postOnce(`${API_BASE_URL}/register`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      accessToken: "successful_auth"
+    });
+    return store.dispatch(registerThunk(userCredentials)).then(() => {
       const actualActions = store.getActions().map((action) => action.type);
       expect(actualActions).toEqual(expectedActions);
     });
@@ -51,7 +87,7 @@ describe("async auth actions", () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(userCredentials)
+      message: "register fail"
     });
     return store.dispatch(registerThunk(userCredentials)).then(() => {
       const actualActions = store.getActions().map((action) => action.type);
