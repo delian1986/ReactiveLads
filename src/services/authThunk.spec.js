@@ -56,6 +56,27 @@ describe("async auth actions", () => {
     });
   });
 
+  it("set message action on login fail", function () {
+    const userCredentials = { email: "invalid@invalid.bg", password: "123" };
+    const store = mockStore({ auth: {} });
+    const expectedActions = "SET_MESSAGE";
+
+    fetchMock.postOnce(`${API_BASE_URL}/login`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      message: "Login fail"
+    });
+    return store.dispatch(loginThunk(userCredentials)).then(() => {
+      jest.useFakeTimers();
+      setTimeout(() => {
+        const actualActions = store.getActions().map((action) => action.type);
+        expect(actualActions[3]).toEqual(expectedActions);
+      }, 3000);
+      jest.runAllTimers();
+    });
+  });
+
   it("creates actions on register success", function () {
     const userCredentials = { email: "valid@valid.bg", password: "1233" };
     const store = mockStore({ auth: {} });
