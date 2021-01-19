@@ -10,13 +10,13 @@ import { MaterialsContainer } from "./components/materials/MaterialsContainer";
 import PrivateRoute from "./containers/PrivateRoute";
 import AnonymousRoute from "./containers/AnonymousRoute";
 
-const basePath = process.env.BASE_PATH;
+const PUBLIC_BASE_PATH = process.env.PUBLIC_BASE_PATH;
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router basename={basePath}>
+        <Router basename={PUBLIC_BASE_PATH}>
           <Header />
           <Switch>
             <AnonymousRoute path="/login" component={Login} />
