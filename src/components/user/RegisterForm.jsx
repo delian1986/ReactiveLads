@@ -1,10 +1,10 @@
 import { useForm } from "../../hooks/useForm";
 import { Input } from "../common/Input";
 import { Button } from "../common/Button";
-import { Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-export const RegisterForm = ({ isLoggedIn, register, message, isPending }) => {
+export const RegisterForm = ({ register, message, isPending }) => {
   const { values, errors, bindField, isValid } = useForm({
     validations: {
       email: {
@@ -53,7 +53,7 @@ export const RegisterForm = ({ isLoggedIn, register, message, isPending }) => {
     register(values);
   };
 
-  return !isLoggedIn ? (
+  return (
     <div className="container h-100">
       <div className="row h-100 justify-content-center align-items-center">
         <div className="col-6 mx-auto">
@@ -114,7 +114,12 @@ export const RegisterForm = ({ isLoggedIn, register, message, isPending }) => {
         </div>
       </div>
     </div>
-  ) : (
-    <Redirect to="/" />
   );
+};
+
+RegisterForm.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  register: PropTypes.func,
+  message: PropTypes.object,
+  isPending: PropTypes.bool
 };

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests <Logout/> component Test rendering component should render with given state from Redux store 1`] = `
+<button
+  className="btn btn-link"
+  onClick={[Function]}
+  type="button"
+>
+  Logout
+</button>
+`;

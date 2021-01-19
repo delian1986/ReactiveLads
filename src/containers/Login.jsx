@@ -2,13 +2,12 @@ import { connect } from "react-redux";
 import { LoginForm as Login } from "../components/user/LoginForm";
 import { bindActionCreators } from "redux";
 import { loginThunk } from "../services/authThunk";
-import { getLoggedInStatus } from "../selectors";
+import { getMessage, getIsAuthPending } from "../selectors";
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: getLoggedInStatus(state),
-    message: state.message,
-    isPending: state.auth.isPending
+    message: getMessage(state),
+    isPending: getIsAuthPending(state)
   };
 };
 

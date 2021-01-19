@@ -1,14 +1,14 @@
 import { Route, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function PrivateRoute({ component: Component, isLoggedIn, ...rest }) {
+function AnonymousRoute({ component: Component, isLoggedIn, ...rest }) {
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (!isLoggedIn) {
+        if (isLoggedIn) {
           return (
-            <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
           );
         }
 
@@ -18,9 +18,9 @@ function PrivateRoute({ component: Component, isLoggedIn, ...rest }) {
   );
 }
 
-export { PrivateRoute };
+export { AnonymousRoute };
 
-PrivateRoute.propTypes = {
+AnonymousRoute.propTypes = {
   component: PropTypes.elementType,
   isLoggedIn: PropTypes.bool,
   rest: PropTypes.any

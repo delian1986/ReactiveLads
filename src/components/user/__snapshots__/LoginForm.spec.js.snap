@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests <LoginForm/> component Test rendering component should render with given state from Redux store 1`] = `
+<div
+  className="container h-100"
+>
+  <div
+    className="row h-100 justify-content-center align-items-center"
+  >
+    <div
+      className="col-6 mx-auto"
+    >
+      <div
+        className="card card-body bg-light"
+      >
+        <form
+          onSubmit={[Function]}
+        >
+          <h2>
+            Login
+          </h2>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="email"
+            >
+              Email
+            </label>
+            <input
+              className="form-control"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Your email here..."
+              type="email"
+              value=""
+            />
+          </div>
+          <label
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Password 4 chars min..."
+            type="password"
+            value=""
+          />
+          <div
+            className="col text-center"
+          >
+            <button
+              className="btn btn-block"
+              disabled={true}
+              type="submit"
+            >
+              Login here !
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

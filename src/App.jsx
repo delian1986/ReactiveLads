@@ -8,6 +8,7 @@ import { NotFound } from "./components/notFound/NotFound";
 import Header from "./components/common/header";
 import { MaterialsContainer } from "./components/materials/MaterialsContainer";
 import PrivateRoute from "./containers/PrivateRoute";
+import AnonymousRoute from "./containers/AnonymousRoute";
 
 const basePath = process.env.BASE_PATH;
 
@@ -18,8 +19,8 @@ class App extends Component {
         <Router basename={basePath}>
           <Header />
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signUp" component={Register} />
+            <AnonymousRoute path="/login" component={Login} />
+            <AnonymousRoute path="/signUp" component={Register} />
             <PrivateRoute path="/userDetails" component={UserDetails} />
             <PrivateRoute path="/" exact component={MaterialsContainer} />
             <Route component={NotFound} />
