@@ -1,3 +1,3 @@
-import { getLoggedInStatus } from "./auth";
+import { getLoggedInStatus, getToken } from "./auth";
 
-export { getLoggedInStatus };
+export { getLoggedInStatus, getToken };
