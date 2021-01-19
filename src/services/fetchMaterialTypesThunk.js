@@ -1,10 +1,11 @@
 import { addMaterialTypes } from "../actions/materialTypes";
-import StorageService from "../services/storageService";
 const API_BASE_URL = process.env.API_BASE_URL;
+import { getToken } from "../selectors/index";
 
-const token = StorageService.getToken();
+const fetchMaterialTypesThunk = () => async (dispatch, getState) => {
+  const state = getState();
+  const token = getToken(state);
 
-const fetchMaterialTypesThunk = () => async (dispatch) => {
   await fetch(`${API_BASE_URL}/materials`, {
     method: "GET",
     headers: {

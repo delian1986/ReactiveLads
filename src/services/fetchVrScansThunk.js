@@ -1,19 +1,24 @@
 import { addVrScans } from "../actions/vrScans";
-import StorageService from "./storageService";
 const API_BASE_URL = process.env.API_BASE_URL;
 import { setPage } from "../actions/page";
-
-const token = StorageService.getToken();
+import { getToken } from "../selectors/index";
 
 export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const state = getState();
+  const token = getToken(state);
 
   const pageToLoad = state.page + 1;
 
   let filter = "";
-  if (state.filters.selectedColors.length) {
-    filter += state.selectedColors.map((c) => `colors=${c}&`);
-  }
+  state.filters.selectedMaterialTypes.forEach((c) => {
+    filter += `materialTypeId=${c}&`;
+  });
+  state.filters.selectedColors.forEach((c) => {
+    filter += `colors_like=(^|,)${c}(,|$)&`;
+  });
+  state.filters.selectedTags.forEach((c) => {
+    filter += `tags_like=(^|,)${c}(,|$)&`;
+  });
 
   const pagination = `_page=${pageToLoad}&_limit=18&`;
 

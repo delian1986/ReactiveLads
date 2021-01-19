@@ -1,4 +1,4 @@
-import { getLoggedInStatus, getIsAuthPending } from "./auth";
+import { getLoggedInStatus, getIsAuthPending, getToken } from "./auth";
 import { getMessage } from "./message";
 
-export { getLoggedInStatus, getMessage, getIsAuthPending };
+export { getLoggedInStatus, getMessage, getIsAuthPending, getToken };

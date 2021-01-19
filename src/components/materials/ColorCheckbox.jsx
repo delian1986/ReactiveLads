@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 
 export class ColorCheckbox extends Component {
   constructor() {
@@ -35,3 +36,9 @@ export class ColorCheckbox extends Component {
     );
   }
 }
+
+ColorCheckbox.propTypes = {
+  id: PropTypes.number.isRequired,
+  hex: PropTypes.string.isRequired,
+  selectColor: PropTypes.func.isRequired
+};
