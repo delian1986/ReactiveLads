@@ -7,6 +7,7 @@ import filters from "./filters";
 import tags from "./tags";
 import vrScans from "./vrScans";
 import page from "./page";
+import loadMore from "./loadMore";
 
 export default combineReducers({
   auth,
@@ -16,5 +17,6 @@ export default combineReducers({
   tags,
   filters,
   vrScans,
-  page
+  page,
+  loadMore
 });
