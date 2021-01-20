@@ -30,7 +30,7 @@ describe("tests <RegisterFrom/> component", () => {
 
   describe("Actions", () => {
     it("should dispatch an action on button click", () => {
-      const fakeEvent = { preventDefault: () => console.log("preventDefault") };
+      const fakeEvent = { preventDefault: () => true };
       renderer.act(() => {
         component.root.findByType("form").props.onSubmit(fakeEvent);
       });
