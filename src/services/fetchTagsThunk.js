@@ -1,6 +1,7 @@
 import { addTags } from "../actions/tags";
 const API_BASE_URL = process.env.API_BASE_URL;
 import { getToken } from "../selectors/index";
+import { handleResponse } from "./handleResponse";
 
 const fetchTagsThunk = () => async (dispatch, getState) => {
   const state = getState();
@@ -12,7 +13,7 @@ const fetchTagsThunk = () => async (dispatch, getState) => {
       Authorization: `Bearer ${token}`
     }
   })
-    .then((data) => data.json())
+    .then(handleResponse)
     .then((data) => data && dispatch(addTags(data)))
     .catch((error) => console.log(error));
 };

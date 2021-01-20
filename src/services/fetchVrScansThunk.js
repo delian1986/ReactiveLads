@@ -4,6 +4,7 @@ const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 import { setPage } from "../actions/page";
 import { getToken } from "../selectors/index";
 import { loadMoreDisable } from "../actions/loadMore";
+import { handleResponse } from "./handleResponse";
 
 export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const state = getState();
@@ -30,7 +31,7 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
       Authorization: `Bearer ${token}`
     }
   });
-  const scans = await data.json();
+  const scans = await handleResponse(data);
 
   await new Promise((resolve) => setTimeout(resolve, 200));
 
