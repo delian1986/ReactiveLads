@@ -5,7 +5,7 @@ export const Logout = ({ logout }) => (
   <Button
     handleClick={logout}
     type="button"
-    className="btn btn-link"
+    className="btn btn-link nav-link"
     label="Logout"
   />
 );

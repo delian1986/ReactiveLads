@@ -1,4 +1,4 @@
-import { getIsAuthPending, getLoggedInStatus } from "./auth";
+import { getEmail, getIsAuthPending, getLoggedInStatus } from "./auth";
 
 describe("auth selectors", () => {
   it("should return getLoggedInStatus", function () {
@@ -16,6 +16,15 @@ describe("auth selectors", () => {
     };
 
     const selected = getIsAuthPending.resultFunc(mockParams);
+    expect(selected).toEqual(mockParams);
+  });
+
+  it("should return userEmail", function () {
+    const mockParams = {
+      email: "test@test.bg"
+    };
+
+    const selected = getEmail.resultFunc(mockParams);
     expect(selected).toEqual(mockParams);
   });
 });

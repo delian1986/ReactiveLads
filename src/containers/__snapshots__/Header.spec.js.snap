@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header container tests Logged in user should match logged in snapshot 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-light bg-light"
+>
+  <a
+    aria-current="page"
+    className="navbar-brand mr-auto active"
+    href="/"
+    onClick={[Function]}
+    style={Object {}}
+  >
+    ReactiveLads
+  </a>
+  <li
+    className="nav-link"
+  >
+    <a
+      className="nav-link disabled"
+      href="#"
+    >
+      Hello, 
+      test@test.bg
+       !
+    </a>
+  </li>
+  <a
+    aria-current={null}
+    className="nav-link"
+    href="/userDetails"
+    onClick={[Function]}
+  >
+    User Details
+  </a>
+  <button
+    className="btn btn-link nav-link"
+    onClick={[Function]}
+    type="button"
+  >
+    Logout
+  </button>
+</nav>
+`;
