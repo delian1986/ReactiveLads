@@ -3,10 +3,6 @@ import { TagFilter } from "../TagFilter";
 import PropTypes from "prop-types";
 
 export class Tags extends Component {
-  componentDidMount() {
-    this.props.fetchTags();
-  }
-
   render() {
     const { tags, selectTag } = this.props;
     return (

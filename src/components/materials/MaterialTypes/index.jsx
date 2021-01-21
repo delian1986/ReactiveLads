@@ -3,10 +3,6 @@ import { MaterialType } from "../MaterialType";
 import PropTypes from "prop-types";
 
 export class MaterialTypes extends Component {
-  componentDidMount() {
-    this.props.fetchMaterialTypes();
-  }
-
   render() {
     const { materialTypes, selectMaterialType } = this.props;
     return (
@@ -43,6 +39,5 @@ MaterialTypes.propTypes = {
       selectMaterialType: PropTypes.func
     })
   ),
-  selectMaterialType: PropTypes.func.isRequired,
-  fetchMaterialTypes: PropTypes.func.isRequired
+  selectMaterialType: PropTypes.func.isRequired
 };

@@ -8,11 +8,12 @@ describe("StorageService", () => {
     });
 
     it("should save user token", () => {
+      StorageService.saveToken(userData.token);
       expect(StorageService.getToken()).toBe(userData.token);
     });
 
     it("should save email", () => {
-      expect(StorageService.getEmail()).toBe(userData.email);
+      expect(StorageService.getUser()).toStrictEqual(userData);
     });
 
     it("should be authenticated", () => {

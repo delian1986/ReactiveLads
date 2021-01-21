@@ -3,10 +3,6 @@ import { ColorCheckbox } from "../ColorCheckbox";
 import PropTypes from "prop-types";
 
 export class Colors extends Component {
-  componentDidMount() {
-    this.props.fetchColors();
-  }
-
   render() {
     const { colors, selectColor } = this.props;
     return (
@@ -43,6 +39,5 @@ Colors.propTypes = {
       selectColor: PropTypes.func
     })
   ),
-  fetchColors: PropTypes.func.isRequired,
   selectColor: PropTypes.func.isRequired
 };
