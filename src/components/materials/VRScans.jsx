@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { VRScan } from "./VRScan";
 import { useDispatch, useSelector } from "react-redux";
 import fetchVrScansThunk from "../../services/fetchVrScansThunk";
@@ -7,6 +7,11 @@ export const VRScans = () => {
   const scans = useSelector((state) => state.vrScans);
   const loadMore = useSelector((state) => state.loadMore);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchVrScansThunk());
+  }, []);
+
   const handleScroll = useCallback(
     (e) => {
       const el = e.target;
