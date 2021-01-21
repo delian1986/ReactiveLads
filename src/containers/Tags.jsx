@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tags } from "../components/materials/Tags/index.jsx";
 
-import fetchTagsThunk from "../services/fetchTagsThunk";
 import { selectTag } from "../actions/filters";
 
 const mapStateToProps = (state) => {
@@ -14,7 +13,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      fetchTags: fetchTagsThunk,
       selectTag: selectTag
     },
     dispatch

@@ -14,9 +14,13 @@ describe("auth reducers", () => {
 
   it("should return initial state", function () {
     const initialState = {
-      isLoggedIn: false,
       email: null,
+      isLoggedIn: false,
       token: null,
+      firstName: null,
+      id: null,
+      lastName: null,
+      photoUrl: null,
       isPending: false
     };
     expect(auth(undefined, {})).toEqual(initialState);
@@ -87,7 +91,11 @@ describe("auth reducers", () => {
     ).toEqual({
       email: null,
       isLoggedIn: false,
-      token: null
+      token: null,
+      firstName: null,
+      id: null,
+      lastName: null,
+      photoUrl: null
     });
   });
 

@@ -5,7 +5,8 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL,
   START_PENDING,
-  STOP_PENDING
+  STOP_PENDING,
+  UPDATE_USER
 } from "./constants";
 
 export const register = (user) => {
@@ -49,5 +50,12 @@ export const logout = () => {
 export const loginFailed = () => {
   return {
     type: LOGIN_FAIL
+  };
+};
+
+export const updateUser = (user) => {
+  return {
+    type: UPDATE_USER,
+    payload: user
   };
 };

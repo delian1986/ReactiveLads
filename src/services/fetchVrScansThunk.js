@@ -2,15 +2,15 @@ import { addVrScans } from "../actions/vrScans";
 const API_BASE_URL = process.env.API_BASE_URL;
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 import { setPage } from "../actions/page";
-import { getToken } from "../selectors/index";
+import { getPage, getToken } from "../selectors/index";
 import { loadMoreDisable } from "../actions/loadMore";
 import { handleResponse } from "./handleResponse";
 
 export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
-
-  const pageToLoad = state.page + 1;
+  const currPage = getPage(state);
+  const pageToLoad = currPage + 1;
 
   let filter = "";
   state.filters.selectedMaterialTypes.forEach((c) => {
