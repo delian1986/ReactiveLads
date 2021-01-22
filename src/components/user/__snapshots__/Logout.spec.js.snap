@@ -2,7 +2,7 @@
 
 exports[`tests <Logout/> component Test rendering component should render with given state from Redux store 1`] = `
 <button
-  className="btn btn-link"
+  className="btn btn-link nav-link"
   onClick={[Function]}
   type="button"
 >

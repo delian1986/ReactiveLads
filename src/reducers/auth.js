@@ -5,16 +5,36 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   START_PENDING,
-  STOP_PENDING
+  STOP_PENDING,
+  UPDATE_USER
 } from "../actions/constants";
 import StorageService from "../services/storageService";
 
-const email = StorageService.getEmail();
+const user = StorageService.getUser();
 const token = StorageService.getToken();
 
-const initialState = token
-  ? { isLoggedIn: true, email, token, isPending: false }
-  : { isLoggedIn: false, email: null, token: null, isPending: false };
+const initialState =
+  token && user
+    ? {
+        isLoggedIn: true,
+        email: user.email,
+        token,
+        isPending: false,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        photoUrl: user.photoUrl,
+        id: user.id
+      }
+    : {
+        isLoggedIn: false,
+        email: null,
+        token: null,
+        isPending: false,
+        firstName: null,
+        lastName: null,
+        photoUrl: null,
+        id: null
+      };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -24,36 +44,40 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
-        email: payload.email,
-        token: payload.token
+        token: payload.token,
+        email: payload.email
       };
     case REGISTER_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        email: null,
-        token: null
+        token: null,
+        email: null
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggedIn: true,
-        email: payload.email,
-        token: payload.token
+        token: payload.token,
+        email: payload.email
       };
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        email: null,
-        token: null
+        token: null,
+        email: null
       };
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
         email: null,
-        token: null
+        token: null,
+        id: null,
+        firstName: null,
+        lastName: null,
+        photoUrl: null
       };
     case START_PENDING:
       return {
@@ -65,6 +89,15 @@ export default function (state = initialState, action) {
         ...state,
         isPending: false
       };
+    case UPDATE_USER: {
+      return {
+        ...state,
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        photoUrl: payload.photoUrl,
+        id: payload.id
+      };
+    }
     default:
       return state;
   }

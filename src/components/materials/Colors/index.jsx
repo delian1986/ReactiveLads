@@ -3,10 +3,6 @@ import { ColorCheckbox } from "../ColorCheckbox";
 import PropTypes from "prop-types";
 
 export class Colors extends Component {
-  componentDidMount() {
-    this.props.fetchColors();
-  }
-
   render() {
     const { colors, selectColor } = this.props;
     return (
@@ -14,7 +10,6 @@ export class Colors extends Component {
         <h5>Colors</h5>
         {colors.length > 0 ? (
           <div style={{ display: "flow-root" }}>
-            <h5>Colors</h5>
             {colors.map((color) => (
               <ColorCheckbox
                 key={color.id}
@@ -44,6 +39,5 @@ Colors.propTypes = {
       selectColor: PropTypes.func
     })
   ),
-  fetchColors: PropTypes.func.isRequired,
   selectColor: PropTypes.func.isRequired
 };

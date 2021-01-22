@@ -9,22 +9,23 @@ class StorageService {
 
   static clearUser() {
     localStorage.removeItem("token");
-    localStorage.removeItem("email");
+    localStorage.removeItem("user");
   }
 
-  static saveUserInfo(data) {
-    const { token, email } = data;
-
-    localStorage.setItem("token", token);
-    localStorage.setItem("email", email);
+  static saveUserInfo(user) {
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   static getToken() {
     return localStorage.getItem("token");
   }
 
-  static getEmail() {
-    return localStorage.getItem("email");
+  static saveToken(token) {
+    return localStorage.setItem("token", token);
+  }
+
+  static getUser() {
+    return JSON.parse(localStorage.getItem("user"));
   }
 }
 

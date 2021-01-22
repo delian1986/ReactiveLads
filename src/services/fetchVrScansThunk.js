@@ -1,13 +1,16 @@
 import { addVrScans } from "../actions/vrScans";
 const API_BASE_URL = process.env.API_BASE_URL;
+const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 import { setPage } from "../actions/page";
-import { getToken } from "../selectors/index";
+import { getPage, getToken } from "../selectors/index";
+import { loadMoreDisable } from "../actions/loadMore";
+import { handleResponse } from "./handleResponse";
 
 export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
-
-  const pageToLoad = state.page + 1;
+  const currPage = getPage(state);
+  const pageToLoad = currPage + 1;
 
   let filter = "";
   state.filters.selectedMaterialTypes.forEach((c) => {
@@ -20,7 +23,7 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
     filter += `tags_like=(^|,)${c}(,|$)&`;
   });
 
-  const pagination = `_page=${pageToLoad}&_limit=18&`;
+  const pagination = `_page=${pageToLoad}&_limit=${VRSCANS_PER_PAGE}&`;
 
   const data = await fetch(`${API_BASE_URL}/vrscans?${filter}${pagination}`, {
     method: "GET",
@@ -28,10 +31,14 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
       Authorization: `Bearer ${token}`
     }
   });
-  const scans = await data.json();
+  const scans = await handleResponse(data);
 
   await new Promise((resolve) => setTimeout(resolve, 200));
 
+  console.log("VRSCANS_PER_PAGE", VRSCANS_PER_PAGE);
+  if (scans.length < VRSCANS_PER_PAGE) {
+    dispatch(loadMoreDisable());
+  }
   dispatch(setPage(pageToLoad));
   dispatch(addVrScans(scans));
 };

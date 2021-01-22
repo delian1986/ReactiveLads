@@ -11,6 +11,7 @@ import StorageService from "./storageService";
 import history from "./history";
 import { clearMessage, setMessage } from "../actions/message";
 const API_BASE_URL = process.env.API_BASE_URL;
+const PUBLIC_BASE_PATH = process.env.PUBLIC_BASE_PATH;
 
 export const loginThunk = ({ email, password }) => async (dispatch) => {
   dispatch(startPending());
@@ -28,8 +29,9 @@ export const loginThunk = ({ email, password }) => async (dispatch) => {
       if (data.accessToken) {
         const token = data.accessToken;
         dispatch(login({ email, token }));
-        StorageService.saveUserInfo({ email, token });
-        history.push("/");
+        StorageService.saveToken(token);
+        StorageService.saveUserInfo({ email: email });
+        history.push(PUBLIC_BASE_PATH);
       } else {
         throw new Error(data);
       }
@@ -60,8 +62,9 @@ export const registerThunk = ({ email, password }) => async (dispatch) => {
       if (data.accessToken) {
         const token = data.accessToken;
         dispatch(register({ email, token }));
-        StorageService.saveUserInfo({ email, token });
-        history.push("/");
+        StorageService.saveToken(token);
+        StorageService.saveUserInfo({ email: email });
+        history.push(PUBLIC_BASE_PATH);
       } else {
         throw new Error(data);
       }
@@ -79,5 +82,5 @@ export const registerThunk = ({ email, password }) => async (dispatch) => {
 export const logoutThunk = () => async (dispatch) => {
   dispatch(logout());
   StorageService.clearUser();
-  history.push("/login");
+  history.push(`${PUBLIC_BASE_PATH}login`);
 };

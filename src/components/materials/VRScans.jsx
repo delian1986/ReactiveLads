@@ -5,12 +5,14 @@ import fetchVrScansThunk from "../../services/fetchVrScansThunk";
 
 export const VRScans = () => {
   const scans = useSelector((state) => state.vrScans);
+  const loadMore = useSelector((state) => state.loadMore);
   const dispatch = useDispatch();
+
   const handleScroll = useCallback(
     (e) => {
       const el = e.target;
       const reachedBottom = el.scrollTop + el.clientHeight === el.scrollHeight;
-      if (reachedBottom && scans.length) {
+      if (reachedBottom && scans.length && loadMore) {
         console.log("Load more items...");
         dispatch(fetchVrScansThunk());
       }

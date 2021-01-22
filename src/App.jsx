@@ -5,18 +5,18 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./containers/Login";
 import Register from "./containers/Register";
 import { NotFound } from "./components/notFound/NotFound";
-import Header from "./components/common/header";
 import { MaterialsContainer } from "./components/materials/MaterialsContainer";
 import PrivateRoute from "./containers/PrivateRoute";
 import AnonymousRoute from "./containers/AnonymousRoute";
+import Header from "./containers/Header";
 
-const basePath = process.env.BASE_PATH;
+const PUBLIC_BASE_PATH = process.env.PUBLIC_BASE_PATH;
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router basename={basePath}>
+        <Router basename={PUBLIC_BASE_PATH}>
           <Header />
           <Switch>
             <AnonymousRoute path="/login" component={Login} />

@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MaterialTypes } from "../components/materials/MaterialTypes/index.jsx";
+import { MaterialTypes } from "../components/materials/MaterialTypes";
 
-import fetchMaterialTypesThunk from "../services/fetchMaterialTypesThunk";
 import { selectMaterialType } from "../actions/filters";
 
 const mapStateToProps = (state) => {
@@ -14,7 +13,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      fetchMaterialTypes: fetchMaterialTypesThunk,
       selectMaterialType: selectMaterialType
     },
     dispatch
