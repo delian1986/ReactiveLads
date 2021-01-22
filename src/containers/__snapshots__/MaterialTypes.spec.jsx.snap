@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests <MaterialTypes/> component Test rendering component should render with given state from Redux store 1`] = `
+Array [
+  <h5>
+    MaterialTypes
+  </h5>,
+  <div>
+    <div>
+      <label>
+        <input
+          className="mr-2"
+          onClick={[Function]}
+          type="checkbox"
+        />
+        data
+      </label>
+    </div>
+  </div>,
+]
+`;
