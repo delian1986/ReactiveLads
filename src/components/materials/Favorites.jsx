@@ -8,7 +8,8 @@ export const Favorites = ({ toggleFavoritesMode, isInFavoritesMode }) => {
         <input
           type="checkbox"
           className="mr-2"
-          onClick={() => toggleFavoritesMode(!isInFavoritesMode)}
+          checked={isInFavoritesMode}
+          onChange={() => toggleFavoritesMode(!isInFavoritesMode)}
         />
         Favorites
       </label>
