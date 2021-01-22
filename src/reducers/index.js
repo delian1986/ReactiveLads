@@ -10,6 +10,7 @@ import page from "./page";
 import loadMore from "./loadMore";
 import isHomeLoaded from "./isHomeLoaded";
 import favorites from "./favorites";
+import isVrScansLoaded from "./isVrScansLoaded";
 
 const appReducer = combineReducers({
   auth,
@@ -21,6 +22,7 @@ const appReducer = combineReducers({
   vrScans,
   page,
   loadMore,
+  isVrScansLoaded,
   isHomeLoaded,
   favorites
 });

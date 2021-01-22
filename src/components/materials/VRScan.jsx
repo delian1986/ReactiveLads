@@ -10,10 +10,11 @@ export class VRScan extends Component {
       fileName,
       favoriteData,
       pushToFavorites,
-      removeFromFavorites
+      removeFromFavorites,
+      thisRef
     } = this.props;
     return (
-      <div className="col mb-3">
+      <div className="col mb-3" ref={thisRef}>
         <div className="card">
           <div className="card-body p-2">
             <img src={thumb} alt="vrScan image" className="card-img-top" />

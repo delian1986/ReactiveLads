@@ -9,6 +9,7 @@ import { isHomeLoaded } from "../actions/isHomeLoaded";
 import { updateUser } from "../actions/auth";
 import StorageService from "./storageService";
 import { initFavorites } from "../actions/favorites";
+import { isVrScansLoaded } from "../actions/isVrScansLoaded";
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 const API_BASE_URL = process.env.API_BASE_URL;
 
@@ -40,6 +41,7 @@ export const homeInitThunk = () => async (dispath, getState) => {
       StorageService.saveUserInfo(data.user);
 
       dispath(isHomeLoaded(true));
+      dispath(isVrScansLoaded(true));
     })
     .catch((err) => {
       alert(err);
