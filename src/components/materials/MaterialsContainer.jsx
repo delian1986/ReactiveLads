@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FiltersContainer } from "./FiltersContainer";
-import { Search } from "./Search";
+import Search from "../../containers/Search";
 import { VRScans } from "./VRScans";
 import { homeInitThunk } from "../../services/homeInitThunk";
 import { useDispatch, useSelector } from "react-redux";

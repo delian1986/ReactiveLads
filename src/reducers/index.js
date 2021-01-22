@@ -9,6 +9,7 @@ import vrScans from "./vrScans";
 import page from "./page";
 import loadMore from "./loadMore";
 import isHomeLoaded from "./isHomeLoaded";
+import search from "./search";
 
 export default combineReducers({
   auth,
@@ -20,5 +21,6 @@ export default combineReducers({
   vrScans,
   page,
   loadMore,
-  isHomeLoaded
+  isHomeLoaded,
+  search
 });

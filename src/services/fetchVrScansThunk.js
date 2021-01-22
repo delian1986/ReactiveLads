@@ -13,6 +13,7 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const pageToLoad = currPage + 1;
 
   let filter = "";
+  filter += `name_like=${state.search}&`;
   state.filters.selectedMaterialTypes.forEach((c) => {
     filter += `materialTypeId=${c}&`;
   });
