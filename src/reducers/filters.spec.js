@@ -11,7 +11,8 @@ describe("filters reducers", () => {
     mockedState = {
       selectedColors: [],
       selectedMaterialTypes: [],
-      selectedTags: []
+      selectedTags: [],
+      isInFavoritesMode: false
     };
   });
 
@@ -19,7 +20,8 @@ describe("filters reducers", () => {
     expect(filters(undefined, {})).toEqual({
       selectedColors: [],
       selectedMaterialTypes: [],
-      selectedTags: []
+      selectedTags: [],
+      isInFavoritesMode: false
     });
   });
 

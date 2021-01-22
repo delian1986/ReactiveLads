@@ -2,10 +2,16 @@ import { useCallback, useRef } from "react";
 import { VRScan } from "./VRScan";
 import { useDispatch, useSelector } from "react-redux";
 import fetchVrScansThunk from "../../services/fetchVrScansThunk";
+import {
+  addFavoritesThunk,
+  removeFavoritesThunk
+} from "../../services/favoritesThunk";
 
 export const VRScans = () => {
   const scans = useSelector((state) => state.vrScans);
   const loadMore = useSelector((state) => state.loadMore);
+  const favorites = useSelector((state) => state.favorites);
+  const userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
   const isVrScansLoaded = useSelector((state) => state.isVrScansLoaded);
   const observer = useRef();
@@ -22,6 +28,14 @@ export const VRScans = () => {
     if (e) observer.current.observe(e);
   });
 
+  const pushToFavorites = (scanId) => {
+    dispatch(addFavoritesThunk({ vrscanId: scanId, userId }));
+  };
+
+  const removeFromFavorites = (favData) => {
+    dispatch(removeFavoritesThunk(favData[0].id));
+  };
+
   return (
     <div className="card p-3 overflow-auto h-100">
       <div className="row row-cols-4">
@@ -32,6 +46,9 @@ export const VRScans = () => {
             name={scan.name}
             thumb={scan.thumb}
             fileName={scan.fileName}
+            favoriteData={favorites.filter((fav) => fav.vrscanId === scan.id)}
+            pushToFavorites={pushToFavorites}
+            removeFromFavorites={removeFromFavorites}
             thisRef={index === scans.length - 5 ? nextPageTriggerElem : undefined}
           />
         ))}

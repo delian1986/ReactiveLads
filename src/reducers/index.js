@@ -9,10 +9,11 @@ import vrScans from "./vrScans";
 import page from "./page";
 import loadMore from "./loadMore";
 import isHomeLoaded from "./isHomeLoaded";
+import favorites from "./favorites";
 import search from "./search";
 import isVrScansLoaded from "./isVrScansLoaded";
 
-export default combineReducers({
+const appReducer = combineReducers({
   auth,
   message,
   materialTypes,
@@ -23,6 +24,12 @@ export default combineReducers({
   page,
   loadMore,
   isHomeLoaded,
+  favorites,
   search,
   isVrScansLoaded
 });
+
+export default (state, action) => {
+  if (action.type === "LOGOUT") return appReducer(undefined, action);
+  return appReducer(state, action);
+};
