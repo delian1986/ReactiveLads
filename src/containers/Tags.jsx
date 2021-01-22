@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tags } from "../components/materials/Tags/index.jsx";
+import { Tags } from "../components/materials/Tags";
 
 import { selectTag } from "../actions/filters";
 

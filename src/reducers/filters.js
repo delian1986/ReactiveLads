@@ -1,13 +1,15 @@
 import {
   SELECT_MATERIAL_TYPE,
   SELECT_COLOR,
-  SELECT_TAG
+  SELECT_TAG,
+  IS_IN_FAVORITES_MODE
 } from "../actions/constants";
 
 const initialState = {
   selectedMaterialTypes: [],
   selectedColors: [],
-  selectedTags: []
+  selectedTags: [],
+  isInFavoritesMode: false
 };
 
 export default (state = initialState, action) => {
@@ -50,6 +52,11 @@ export default (state = initialState, action) => {
           selectedTags: [...state.selectedTags, action.payload]
         };
       }
+    case IS_IN_FAVORITES_MODE:
+      return {
+        ...state,
+        isInFavoritesMode: action.payload
+      };
     default:
       return state;
   }

@@ -2,6 +2,7 @@ import { getLoggedInStatus, getIsAuthPending, getToken, getEmail } from "./auth"
 import { getMessage } from "./message";
 import { getPage } from "./page";
 import { getIsHomeLoaded } from "./homeLoaded";
+import { getIsInFavoritesMode } from "./filters";
 
 export {
   getLoggedInStatus,
@@ -10,5 +11,6 @@ export {
   getToken,
   getEmail,
   getPage,
-  getIsHomeLoaded
+  getIsHomeLoaded,
+  getIsInFavoritesMode
 };

@@ -8,6 +8,7 @@ import { setPage } from "../actions/page";
 import { isHomeLoaded } from "../actions/isHomeLoaded";
 import { updateUser } from "../actions/auth";
 import StorageService from "./storageService";
+import { initFavorites } from "../actions/favorites";
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 const API_BASE_URL = process.env.API_BASE_URL;
 
@@ -35,6 +36,7 @@ export const homeInitThunk = () => async (dispath, getState) => {
       dispath(setPage(page + 1));
 
       data.user && dispath(updateUser(data.user));
+      data.favorites && dispath(initFavorites(data.favorites));
       StorageService.saveUserInfo(data.user);
 
       dispath(isHomeLoaded(true));
