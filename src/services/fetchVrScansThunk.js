@@ -5,6 +5,7 @@ import { setPage } from "../actions/page";
 import { getPage, getToken } from "../selectors/index";
 import { loadMoreDisable } from "../actions/loadMore";
 import { handleResponse } from "./handleResponse";
+import { isVrScansLoaded } from "../actions/isVrScansLoaded";
 
 export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const state = getState();
@@ -24,6 +25,8 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
     filter += `tags_like=(^|,)${c}(,|$)&`;
   });
 
+  dispatch(isVrScansLoaded(false));
+
   const pagination = `_page=${pageToLoad}&_limit=${VRSCANS_PER_PAGE}&`;
 
   const data = await fetch(`${API_BASE_URL}/vrscans?${filter}${pagination}`, {
@@ -42,6 +45,7 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   }
   dispatch(setPage(pageToLoad));
   dispatch(addVrScans(scans));
+  dispatch(isVrScansLoaded(true));
 };
 
 export default fetchVrScansThunk;
