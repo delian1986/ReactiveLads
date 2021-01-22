@@ -2,10 +2,12 @@ import { useCallback } from "react";
 import { VRScan } from "./VRScan";
 import { useDispatch, useSelector } from "react-redux";
 import fetchVrScansThunk from "../../services/fetchVrScansThunk";
+import { addFavorite, removeFavorite } from "../../actions/favorites";
 
 export const VRScans = () => {
   const scans = useSelector((state) => state.vrScans);
   const loadMore = useSelector((state) => state.loadMore);
+  const favorites = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
 
   const handleScroll = useCallback(
@@ -20,6 +22,14 @@ export const VRScans = () => {
     [scans, dispatch]
   );
 
+  const pushToFavorites = (id) => {
+    dispatch(addFavorite(id));
+  };
+
+  const removeFromFavorites = (id) => {
+    dispatch(removeFavorite(id));
+  };
+
   return (
     <div className="card p-3 overflow-auto" onScroll={handleScroll}>
       <div className="row row-cols-4">
@@ -31,6 +41,9 @@ export const VRScans = () => {
               name={scan.name}
               thumb={scan.thumb}
               fileName={scan.fileName}
+              isInFavs={favorites.some((id) => id === scan.id)}
+              pushToFavorites={pushToFavorites}
+              removeFromFavorites={removeFromFavorites}
             />
           ))
         ) : (

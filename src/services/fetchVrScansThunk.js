@@ -42,7 +42,6 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
 
   await new Promise((resolve) => setTimeout(resolve, 200));
 
-  console.log("VRSCANS_PER_PAGE", VRSCANS_PER_PAGE);
   if (scans.length < VRSCANS_PER_PAGE) {
     dispatch(loadMoreDisable());
   }

@@ -21,7 +21,7 @@ export const SELECT_TAG = "SELECT_TAG";
 export const IS_IN_FAVORITES_MODE = "IS_IN_FAVORITES_MODE";
 export const INIT_FAVORITES = "INIT_FAVORITES";
 export const ADD_FAVORITE = "ADD_FAVORITE";
-export const REMOVE_FAVORITE = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
 export const ADD_VR_SCANS = "ADD_VR_SCANS";
 export const RESET_VR_SCANS = "RESET_VR_SCANS";
