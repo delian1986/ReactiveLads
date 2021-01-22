@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tests <Colors/> component Test rendering component should render with given state from Redux store 1`] = `
+Array [
+  <h5>
+    Colors
+  </h5>,
+  <div
+    style={
+      Object {
+        "display": "flow-root",
+      }
+    }
+  >
+    <div
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "data",
+          "float": "left",
+          "height": "25px",
+          "margin": "5px",
+          "outline": "none",
+          "position": "relative",
+          "width": "25px",
+        }
+      }
+    />
+  </div>,
+]
+`;

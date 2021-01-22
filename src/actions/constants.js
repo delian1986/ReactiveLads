@@ -21,6 +21,7 @@ export const SELECT_TAG = "SELECT_TAG";
 export const ADD_VR_SCANS = "ADD_VR_SCANS";
 export const RESET_VR_SCANS = "RESET_VR_SCANS";
 
+export const SET_PAGE = "SET_PAGE";
 export const LOAD_MORE_ENABLE = "LOAD_MORE_ENABLE";
 export const LOAD_MORE_DISABLE = "LOAD_MORE_DISABLE";
 
