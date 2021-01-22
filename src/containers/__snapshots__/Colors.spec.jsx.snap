@@ -12,9 +12,6 @@ Array [
       }
     }
   >
-    <h5>
-      Colors
-    </h5>
     <div
       onClick={[Function]}
       style={
