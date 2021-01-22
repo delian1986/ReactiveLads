@@ -16,6 +16,7 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const pageToLoad = currPage + 1;
 
   let filter = "";
+  filter += `name_like=${state.search}&`;
 
   if (isInFavoritesMode) {
     if (favorites.length === 0) {

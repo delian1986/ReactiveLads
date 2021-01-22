@@ -10,6 +10,7 @@ import page from "./page";
 import loadMore from "./loadMore";
 import isHomeLoaded from "./isHomeLoaded";
 import favorites from "./favorites";
+import search from "./search";
 import isVrScansLoaded from "./isVrScansLoaded";
 
 const appReducer = combineReducers({
@@ -22,9 +23,10 @@ const appReducer = combineReducers({
   vrScans,
   page,
   loadMore,
-  isVrScansLoaded,
   isHomeLoaded,
-  favorites
+  favorites,
+  search,
+  isVrScansLoaded
 });
 
 export default (state, action) => {
