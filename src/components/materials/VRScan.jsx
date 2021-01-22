@@ -8,7 +8,7 @@ export class VRScan extends Component {
       thumb,
       name,
       fileName,
-      isInFavs,
+      favoriteData,
       pushToFavorites,
       removeFromFavorites
     } = this.props;
@@ -19,10 +19,10 @@ export class VRScan extends Component {
             <img src={thumb} alt="vrScan image" className="card-img-top" />
             <h5 className="card-title pt-2 mb-0">{name}</h5>
             <div className="card-text">{fileName}</div>
-            {isInFavs ? (
+            {favoriteData.length > 0 ? (
               <i
                 className="bi bi-suit-heart-fill"
-                onClick={() => removeFromFavorites(id)}
+                onClick={() => removeFromFavorites(favoriteData)}
               />
             ) : (
               <i className="bi bi-suit-heart" onClick={() => pushToFavorites(id)} />
@@ -38,7 +38,7 @@ VRScan.propTypes = {
   thumb: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   fileName: PropTypes.string.isRequired,
-  isInFavs: PropTypes.bool,
+  favoriteData: PropTypes.array,
   pushToFavorites: PropTypes.func,
   removeFromFavorites: PropTypes.func,
   id: PropTypes.number

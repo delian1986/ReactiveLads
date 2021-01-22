@@ -81,6 +81,6 @@ export const registerThunk = ({ email, password }) => async (dispatch) => {
 
 export const logoutThunk = () => async (dispatch) => {
   dispatch(logout());
-  StorageService.clearUser();
+  StorageService.clear();
   history.push(`${PUBLIC_BASE_PATH}login`);
 };

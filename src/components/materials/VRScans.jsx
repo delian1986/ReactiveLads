@@ -2,12 +2,16 @@ import { useCallback } from "react";
 import { VRScan } from "./VRScan";
 import { useDispatch, useSelector } from "react-redux";
 import fetchVrScansThunk from "../../services/fetchVrScansThunk";
-import { addFavorite, removeFavorite } from "../../actions/favorites";
+import {
+  addFavoritesThunk,
+  removeFavoritesThunk
+} from "../../services/favoritesThunk";
 
 export const VRScans = () => {
   const scans = useSelector((state) => state.vrScans);
   const loadMore = useSelector((state) => state.loadMore);
   const favorites = useSelector((state) => state.favorites);
+  const userId = useSelector((state) => state.auth.id);
   const dispatch = useDispatch();
 
   const handleScroll = useCallback(
@@ -22,12 +26,12 @@ export const VRScans = () => {
     [scans, dispatch]
   );
 
-  const pushToFavorites = (id) => {
-    dispatch(addFavorite(id));
+  const pushToFavorites = (scanId) => {
+    dispatch(addFavoritesThunk({ vrscanId: scanId, userId }));
   };
 
-  const removeFromFavorites = (id) => {
-    dispatch(removeFavorite(id));
+  const removeFromFavorites = (favData) => {
+    dispatch(removeFavoritesThunk(favData[0].id));
   };
 
   return (
@@ -41,7 +45,7 @@ export const VRScans = () => {
               name={scan.name}
               thumb={scan.thumb}
               fileName={scan.fileName}
-              isInFavs={favorites.some((id) => id === scan.id)}
+              favoriteData={favorites.filter((fav) => fav.vrscanId === scan.id)}
               pushToFavorites={pushToFavorites}
               removeFromFavorites={removeFromFavorites}
             />

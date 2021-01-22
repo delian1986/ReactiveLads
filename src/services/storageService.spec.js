@@ -23,9 +23,5 @@ describe("StorageService", () => {
     it("should clear", () => {
       expect(StorageService.clear()).toBe(undefined);
     });
-
-    it("should clear user info", () => {
-      expect(StorageService.clearUser()).toBe(undefined);
-    });
   });
 });

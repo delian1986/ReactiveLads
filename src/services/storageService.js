@@ -7,11 +7,6 @@ class StorageService {
     localStorage.clear();
   }
 
-  static clearUser() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  }
-
   static saveUserInfo(user) {
     localStorage.setItem("user", JSON.stringify(user));
   }

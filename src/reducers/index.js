@@ -11,7 +11,7 @@ import loadMore from "./loadMore";
 import isHomeLoaded from "./isHomeLoaded";
 import favorites from "./favorites";
 
-export default combineReducers({
+const appReducer = combineReducers({
   auth,
   message,
   materialTypes,
@@ -24,3 +24,8 @@ export default combineReducers({
   isHomeLoaded,
   favorites
 });
+
+export default (state, action) => {
+  if (action.type === "LOGOUT") return appReducer(undefined, action);
+  return appReducer(state, action);
+};

@@ -7,7 +7,7 @@ export default (state = [], action) => {
     case ADD_FAVORITE:
       return state.concat(action.payload);
     case REMOVE_FAVORITE:
-      return state.filter((fav) => fav !== action.payload);
+      return state.filter((fav) => fav.id !== action.payload);
     default:
       return state;
   }
