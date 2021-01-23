@@ -3,4 +3,4 @@ dist
 .idea
 reactive-lads.code-workspace
 coverage
-debug.log
+.vscode

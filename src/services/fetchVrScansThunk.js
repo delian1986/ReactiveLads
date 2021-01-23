@@ -1,8 +1,8 @@
-import { addVrScans } from "../actions/vrScans";
+import { addVrScans, resetVrScans } from "../actions/vrScans";
 const API_BASE_URL = process.env.API_BASE_URL;
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 import { setPage } from "../actions/page";
-import { getPage, getToken } from "../selectors/index";
+import { getIsInFavoritesMode, getPage, getToken } from "../selectors/index";
 import { loadMoreDisable } from "../actions/loadMore";
 import { handleResponse } from "./handleResponse";
 import { isVrScansLoaded } from "../actions/isVrScansLoaded";
@@ -11,9 +11,22 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
   const currPage = getPage(state);
+  const isInFavoritesMode = getIsInFavoritesMode(state);
+  const favorites = state.favorites;
   const pageToLoad = currPage + 1;
 
   let filter = "";
+  filter += `name_like=${state.search}&`;
+
+  if (isInFavoritesMode) {
+    if (favorites.length === 0) {
+      return dispatch(resetVrScans());
+    }
+
+    state.favorites.forEach((f) => {
+      filter += `id=${f.vrscanId}&`;
+    });
+  }
   state.filters.selectedMaterialTypes.forEach((c) => {
     filter += `materialTypeId=${c}&`;
   });
@@ -38,7 +51,6 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
 
   await new Promise((resolve) => setTimeout(resolve, 200));
 
-  console.log("VRSCANS_PER_PAGE", VRSCANS_PER_PAGE);
   if (scans.length < VRSCANS_PER_PAGE) {
     dispatch(loadMoreDisable());
   }

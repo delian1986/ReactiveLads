@@ -8,7 +8,7 @@ export const filterMiddleware = (store) => (next) => (action) => {
   next(action);
   const after = store.getState();
 
-  if (before.filters !== after.filters) {
+  if (before.filters !== after.filters || before.search !== after.search) {
     console.log("Filters changed! Reset and load first chunk of data");
     store.dispatch(setPage(0));
     store.dispatch(resetVrScans());
