@@ -10,8 +10,8 @@ import page from "./page";
 import loadMore from "./loadMore";
 import isHomeLoaded from "./isHomeLoaded";
 import favorites from "./favorites";
-import search from "./search";
 import isVrScansLoaded from "./isVrScansLoaded";
+import savePresets from "./savePresets";
 
 const appReducer = combineReducers({
   auth,
@@ -25,8 +25,8 @@ const appReducer = combineReducers({
   loadMore,
   isHomeLoaded,
   favorites,
-  search,
-  isVrScansLoaded
+  isVrScansLoaded,
+  savePresets
 });
 
 export default (state, action) => {

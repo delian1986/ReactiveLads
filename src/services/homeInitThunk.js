@@ -10,6 +10,7 @@ import { updateUser } from "../actions/auth";
 import StorageService from "./storageService";
 import { initFavorites } from "../actions/favorites";
 import { isVrScansLoaded } from "../actions/isVrScansLoaded";
+import { initSavePresets } from "../actions/savePresets";
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 const API_BASE_URL = process.env.API_BASE_URL;
 
@@ -33,6 +34,7 @@ export const homeInitThunk = () => async (dispath, getState) => {
       data.materials && dispath(addMaterialTypes(data.materials));
       data.colors && dispath(addColors(data.colors));
       data.tags && dispath(addTags(data.tags));
+      data.savePresets && dispath(initSavePresets(data.savePresets));
       data.vrscans && dispath(addVrScans(data.vrscans));
       dispath(setPage(page + 1));
 
@@ -44,6 +46,6 @@ export const homeInitThunk = () => async (dispath, getState) => {
       dispath(isVrScansLoaded(true));
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     });
 };

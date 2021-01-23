@@ -11,7 +11,10 @@ describe("tests <Tags/> component", () => {
   let component;
   beforeEach(() => {
     store = mockStore({
-      tags: [{ id: 1, name: "data" }]
+      tags: [{ id: 1, name: "data" }],
+      filters: {
+        selectedTags: [3, 5]
+      }
     });
     store.dispatch = jest.fn();
     component = renderer.create(

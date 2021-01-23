@@ -6,7 +6,8 @@ import { selectTag } from "../actions/filters";
 
 const mapStateToProps = (state) => {
   return {
-    tags: state.tags
+    tags: state.tags,
+    selectedTagsFilter: state.filters.selectedTags
   };
 };
 

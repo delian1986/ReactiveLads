@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 
 export class MaterialTypes extends Component {
   render() {
-    const { materialTypes, selectMaterialType } = this.props;
+    const {
+      materialTypes,
+      selectMaterialType,
+      selectedMaterialsFilter
+    } = this.props;
     return (
       <>
         <h5>MaterialTypes</h5>
@@ -16,6 +20,9 @@ export class MaterialTypes extends Component {
                 id={materialType.id}
                 name={materialType.name}
                 selectMaterialType={selectMaterialType}
+                isSelected={selectedMaterialsFilter.some(
+                  (typeId) => typeId === materialType.id
+                )}
               />
             ))}
           </div>
@@ -39,5 +46,6 @@ MaterialTypes.propTypes = {
       selectMaterialType: PropTypes.func
     })
   ),
-  selectMaterialType: PropTypes.func.isRequired
+  selectMaterialType: PropTypes.func.isRequired,
+  selectedMaterialsFilter: PropTypes.array
 };

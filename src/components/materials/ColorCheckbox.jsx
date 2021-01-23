@@ -2,20 +2,13 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 
 export class ColorCheckbox extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      outline: false
-    };
+  constructor(props) {
+    super(props);
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange() {
-    this.setState({
-      outline: !this.state.outline
-    });
     this.props.selectColor(this.props.id);
   }
 
@@ -29,7 +22,7 @@ export class ColorCheckbox extends Component {
           position: "relative",
           float: "left",
           margin: "5px",
-          outline: this.state.outline ? "auto" : "none"
+          outline: this.props.isSelected ? "auto" : "none"
         }}
         onClick={this.handleChange}
       />
@@ -40,5 +33,6 @@ export class ColorCheckbox extends Component {
 ColorCheckbox.propTypes = {
   id: PropTypes.number.isRequired,
   hex: PropTypes.string.isRequired,
-  selectColor: PropTypes.func.isRequired
+  selectColor: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool
 };
