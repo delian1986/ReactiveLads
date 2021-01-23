@@ -6,6 +6,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const START_PENDING = "START_PENDING";
 export const STOP_PENDING = "STOP_PENDING";
 export const LOGOUT = "LOGOUT";
+export const USER_DETAILS_SAVE = "USER_DETAILS_SAVE";
 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
