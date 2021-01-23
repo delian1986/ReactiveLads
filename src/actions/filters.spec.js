@@ -1,5 +1,15 @@
-import { SELECT_MATERIAL_TYPE, SELECT_TAG, SELECT_COLOR } from "./constants";
-import { selectMaterialType, selectTag, selectColor } from "./filters";
+import {
+  SELECT_MATERIAL_TYPE,
+  SELECT_TAG,
+  SELECT_COLOR,
+  SET_SEARCH_QUERY
+} from "./constants";
+import {
+  selectMaterialType,
+  selectTag,
+  selectColor,
+  setSearchQuery
+} from "./filters";
 
 describe("filters actions", () => {
   it("should create action for selectMaterialType", function () {
@@ -30,5 +40,17 @@ describe("filters actions", () => {
       payload: color
     };
     expect(selectColor(color)).toEqual(expectedAction);
+  });
+
+  describe("search actions", () => {
+    it("should create action for setSearchQuery", function () {
+      const searchQuery = "mockQuery";
+
+      const expectedAction = {
+        type: SET_SEARCH_QUERY,
+        payload: searchQuery
+      };
+      expect(setSearchQuery(searchQuery)).toEqual(expectedAction);
+    });
   });
 });

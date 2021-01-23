@@ -23,7 +23,7 @@ export const addFavoritesThunk = ({ vrscanId, userId }) => async (
       dispatch(addFavorite(data));
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     });
 };
 
@@ -42,6 +42,6 @@ export const removeFavoritesThunk = (id) => async (dispatch, getState) => {
       dispatch(removeFavorite(id));
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     });
 };

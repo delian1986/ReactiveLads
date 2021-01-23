@@ -16,7 +16,9 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   const pageToLoad = currPage + 1;
 
   let filter = "";
-  filter += `name_like=${state.search}&`;
+  if (state.filters.searchQuery !== "") {
+    filter += `name_like=${state.filters.searchQuery}&`;
+  }
 
   if (isInFavoritesMode) {
     if (favorites.length === 0) {
@@ -39,7 +41,7 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
 
   dispatch(isVrScansLoaded(false));
 
-  const pagination = `_page=${pageToLoad}&_limit=${VRSCANS_PER_PAGE}&`;
+  const pagination = `_page=${pageToLoad}&_limit=${VRSCANS_PER_PAGE}`;
 
   const data = await fetch(`${API_BASE_URL}/vrscans?${filter}${pagination}`, {
     method: "GET",

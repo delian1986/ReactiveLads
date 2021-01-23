@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export class Tags extends Component {
   render() {
-    const { tags, selectTag } = this.props;
+    const { tags, selectTag, selectedTagsFilter } = this.props;
     return (
       <>
         <h5>Tags</h5>
@@ -16,6 +16,7 @@ export class Tags extends Component {
                 id={tag.id}
                 name={tag.name}
                 selectTag={selectTag}
+                isSelected={selectedTagsFilter.some((tagId) => tagId === tag.id)}
               />
             ))}
           </div>
@@ -40,5 +41,6 @@ Tags.propTypes = {
     })
   ),
   selectTag: PropTypes.func,
-  fetchTags: PropTypes.func
+  fetchTags: PropTypes.func,
+  selectedTagsFilter: PropTypes.array
 };

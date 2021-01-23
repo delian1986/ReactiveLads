@@ -6,7 +6,8 @@ import { selectColor } from "../actions/filters";
 
 const mapStateToProps = (state) => {
   return {
-    colors: state.colors
+    colors: state.colors,
+    selectedColorsFilter: state.filters.selectedColors
   };
 };
 

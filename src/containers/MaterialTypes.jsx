@@ -6,7 +6,8 @@ import { selectMaterialType } from "../actions/filters";
 
 const mapStateToProps = (state) => {
   return {
-    materialTypes: state.materialTypes
+    materialTypes: state.materialTypes,
+    selectedMaterialsFilter: state.filters.selectedMaterialTypes
   };
 };
 

@@ -9,8 +9,9 @@ Array [
     <div>
       <label>
         <input
+          checked={false}
           className="mr-2"
-          onClick={[Function]}
+          onChange={[Function]}
           type="checkbox"
         />
         data

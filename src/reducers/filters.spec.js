@@ -2,7 +2,8 @@ import filters from "./filters";
 import {
   SELECT_MATERIAL_TYPE,
   SELECT_COLOR,
-  SELECT_TAG
+  SELECT_TAG,
+  SET_SEARCH_QUERY
 } from "../actions/constants";
 
 describe("filters reducers", () => {
@@ -12,7 +13,8 @@ describe("filters reducers", () => {
       selectedColors: [],
       selectedMaterialTypes: [],
       selectedTags: [],
-      isInFavoritesMode: false
+      isInFavoritesMode: false,
+      searchQuery: ""
     };
   });
 
@@ -21,7 +23,8 @@ describe("filters reducers", () => {
       selectedColors: [],
       selectedMaterialTypes: [],
       selectedTags: [],
-      isInFavoritesMode: false
+      isInFavoritesMode: false,
+      searchQuery: ""
     });
   });
 
@@ -89,5 +92,21 @@ describe("filters reducers", () => {
         payload: tagId
       })
     ).toEqual(mockedState);
+  });
+
+  it("should handle SET_SEARCH_QUERY", function () {
+    const mockQuery = "mockQuery";
+    expect(
+      filters(undefined, {
+        type: SET_SEARCH_QUERY,
+        payload: mockQuery
+      })
+    ).toEqual({
+      isInFavoritesMode: false,
+      searchQuery: mockQuery,
+      selectedColors: [],
+      selectedMaterialTypes: [],
+      selectedTags: []
+    });
   });
 });

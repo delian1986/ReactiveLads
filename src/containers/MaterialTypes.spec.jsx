@@ -18,7 +18,10 @@ describe("tests <MaterialTypes/> component", () => {
           fetchMaterialTypes: jest.fn(),
           selectMaterialType: jest.fn()
         }
-      ]
+      ],
+      filters: {
+        selectedMaterialTypes: [3, 4]
+      }
     });
     store.dispatch = jest.fn();
     component = renderer.create(
