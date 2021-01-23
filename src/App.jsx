@@ -4,6 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./containers/Login";
 import Register from "./containers/Register";
+import UserDetails from "./containers/UserDetails";
 import { NotFound } from "./components/notFound/NotFound";
 import { MaterialsContainer } from "./components/materials/MaterialsContainer";
 import PrivateRoute from "./containers/PrivateRoute";
@@ -30,9 +31,4 @@ class App extends Component {
     );
   }
 }
-
-function UserDetails() {
-  return <h2>UserDetails Page</h2>;
-}
-
 export default hot(App);

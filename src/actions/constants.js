@@ -6,6 +6,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const START_PENDING = "START_PENDING";
 export const STOP_PENDING = "STOP_PENDING";
 export const LOGOUT = "LOGOUT";
+export const USER_DETAILS_SAVE = "USER_DETAILS_SAVE";
 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
@@ -18,10 +19,18 @@ export const SELECT_MATERIAL_TYPE = "SELECT_MATERIAL_TYPE";
 export const SELECT_COLOR = "SELECT_COLOR";
 export const SELECT_TAG = "SELECT_TAG";
 
+export const SET_ALL_FILTERS = "SET_ALL_FILTERS";
+export const RESET_ALL_FILTERS = "RESET_ALL_FILTERS";
+
 export const IS_IN_FAVORITES_MODE = "IS_IN_FAVORITES_MODE";
 export const INIT_FAVORITES = "INIT_FAVORITES";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+
+export const INIT_SAVE_PRESETS = "INIT_SAVE_PRESETS";
+export const ADD_SAVE_PRESET = "ADD_SAVE_PRESET";
+export const REMOVE_SAVE_PRESET = "REMOVE_SAVE_PRESET";
+export const SET_PRESET_ID = "SET_PRESET_ID";
 
 export const ADD_VR_SCANS = "ADD_VR_SCANS";
 export const RESET_VR_SCANS = "RESET_VR_SCANS";

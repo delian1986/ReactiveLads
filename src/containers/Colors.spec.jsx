@@ -17,7 +17,10 @@ describe("tests <Colors/> component", () => {
           hex: "data",
           background: "black"
         }
-      ]
+      ],
+      filters: {
+        selectedColors: [3, 5]
+      }
     });
     store.dispatch = jest.fn();
     component = renderer.create(

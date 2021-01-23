@@ -2,13 +2,17 @@ import {
   SELECT_MATERIAL_TYPE,
   SELECT_COLOR,
   SELECT_TAG,
-  IS_IN_FAVORITES_MODE
+  IS_IN_FAVORITES_MODE,
+  SET_ALL_FILTERS,
+  SET_SEARCH_QUERY,
+  RESET_ALL_FILTERS
 } from "../actions/constants";
 
 const initialState = {
   selectedMaterialTypes: [],
   selectedColors: [],
   selectedTags: [],
+  searchQuery: "",
   isInFavoritesMode: false
 };
 
@@ -52,6 +56,22 @@ export default (state = initialState, action) => {
           selectedTags: [...state.selectedTags, action.payload]
         };
       }
+    case SET_ALL_FILTERS:
+      return {
+        ...state,
+        selectedTags: action.payload.tags,
+        selectedColors: action.payload.colors,
+        selectedMaterialTypes: action.payload.types,
+        searchQuery: action.payload.searchQuery,
+        isInFavoritesMode: action.payload.favoritesMode
+      };
+    case SET_SEARCH_QUERY:
+      return {
+        ...state,
+        searchQuery: action.payload
+      };
+    case RESET_ALL_FILTERS:
+      return initialState;
     case IS_IN_FAVORITES_MODE:
       return {
         ...state,
