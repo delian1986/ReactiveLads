@@ -20,6 +20,7 @@ export default (state = initialState, action) => {
     case ADD_SAVE_PRESET:
       return {
         ...state,
+        presetId: action.payload.id,
         presetsCollection: state.presetsCollection.concat(action.payload)
       };
     case REMOVE_SAVE_PRESET:
