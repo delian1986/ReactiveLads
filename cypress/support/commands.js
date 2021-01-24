@@ -44,6 +44,6 @@ Cypress.Commands.add("login", async ()=>{
             }
         })
         .catch((error) => {
-            alert("err on cypres login.."+error);
+            alert("err on cypress login... "+error);
         });
 });
