@@ -6,7 +6,8 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   START_PENDING,
-  STOP_PENDING
+  STOP_PENDING,
+  UPDATE_USER
 } from "../actions/constants";
 
 describe("auth reducers", () => {
@@ -117,5 +118,20 @@ describe("auth reducers", () => {
     ).toEqual({
       isPending: false
     });
+  });
+
+  it("should handle UPDATE_USER", function () {
+    const payload = {
+      firstName: null,
+      id: null,
+      lastName: null,
+      photoUrl: null
+    };
+    expect(
+      auth([], {
+        type: UPDATE_USER,
+        payload
+      })
+    ).toEqual(payload);
   });
 });
