@@ -4,4 +4,4 @@ dist
 .idea
 reactive-lads.code-workspace
 coverage
-.vscode
+vscode
