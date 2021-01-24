@@ -24,7 +24,10 @@
     ],
     "moduleNameMapper": {
       "\\.css$": "./__mocks__/styleMock.js"
-    }
+    },
+    "modulePathIgnorePatterns": [
+      "./cypress"
+    ]
   },
   "repository": {
     "type": "git",
