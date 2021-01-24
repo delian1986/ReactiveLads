@@ -23,3 +23,27 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+const StorageService = require("../../src/services/storageService");
+
+Cypress.Commands.add("login", async ()=>{
+    await fetch("https://reactivelads.herokuapp.com/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email:"delian1914@abv.bg", password: "1234" })
+    })
+        .then((data) => data.json())
+        .then((data) => {
+            if (data.accessToken) {
+                const token = data.accessToken;
+                StorageService.saveToken(token);
+                StorageService.saveUserInfo({ email: "delian1914@abv.bg" });
+            } else {
+                throw new Error(data);
+            }
+        })
+        .catch((error) => {
+            alert("err on cypres login.."+error);
+        });
+});
