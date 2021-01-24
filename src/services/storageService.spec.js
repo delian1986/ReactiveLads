@@ -1,6 +1,17 @@
 import StorageService from "./storageService";
 
 describe("StorageService", () => {
+  it("should save user info", () => {
+    const userData = { email: "123", token: "123" };
+    StorageService.saveUserInfo(userData);
+    expect(StorageService.getUser()).toStrictEqual(userData);
+  });
+
+  it("should remove user if given invalid info", () => {
+    StorageService.saveUserInfo(undefined);
+    expect(StorageService.getUser()).toStrictEqual(null);
+  });
+
   describe("User storage", () => {
     const userData = { email: "123", token: "123" };
     beforeEach(() => {
