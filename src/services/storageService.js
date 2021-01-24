@@ -8,7 +8,14 @@ class StorageService {
   }
 
   static saveUserInfo(user) {
-    localStorage.setItem("user", JSON.stringify(user));
+    const userString = JSON.stringify(user);
+    try {
+      JSON.parse(userString);
+    } catch (e) {
+      localStorage.removeItem("user");
+      return;
+    }
+    localStorage.setItem("user", userString);
   }
 
   static getToken() {
