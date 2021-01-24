@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 export class UserDetails extends Component {
   constructor(props) {
@@ -19,6 +19,14 @@ export class UserDetails extends Component {
   applyChanges = (e) => {
     e.preventDefault();
     this.props.applyChangesThunk(this.state);
+    this.navigateBack();
+  };
+
+  cancelChanges = () => {
+    this.navigateBack();
+  };
+
+  navigateBack = () => {
     this.setState({ goBack: true });
   };
 
@@ -91,9 +99,13 @@ export class UserDetails extends Component {
                 <button className="btn btn-block" type="submit" name="Apply">
                   Apply
                 </button>
-                <Link className="btn btn-block" to="/">
+                <button
+                  className="btn btn-block"
+                  to="/"
+                  onClick={this.cancelChanges}
+                >
                   Cancel
-                </Link>
+                </button>
               </form>
             </div>
           </div>
