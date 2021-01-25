@@ -45,7 +45,7 @@ export const LoginForm = ({ message, login, isPending }) => {
 
   return (
     <div className="container h-100">
-      <div className="row h-100 justify-content-center align-items-center">
+      <div className="row h-100 pt-3 justify-content-center">
         <div className="col-6 mx-auto">
           <div className="card card-body bg-light">
             <form onSubmit={handleSubmit}>
