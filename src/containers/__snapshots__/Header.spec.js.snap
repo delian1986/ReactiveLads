@@ -25,6 +25,16 @@ exports[`Header container tests Logged in user should match logged in snapshot 1
        !
     </a>
   </li>
+  <img
+    alt="user-photo"
+    className="circle-round"
+    style={
+      Object {
+        "borderRadius": "50%",
+        "height": "40px",
+      }
+    }
+  />
   <a
     aria-current={null}
     className="nav-link"

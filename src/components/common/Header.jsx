@@ -3,7 +3,7 @@ import Logout from "../../containers/Logout";
 import PropTypes from "prop-types";
 
 export const Header = (props) => {
-  const { email, isLoggedIn } = props;
+  const { email, isLoggedIn, photoUrl } = props;
 
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light">
@@ -17,6 +17,15 @@ export const Header = (props) => {
               Hello, {email} !
             </a>
           </li>
+          <img
+            className="circle-round"
+            style={{
+              height: "40px",
+              borderRadius: "50%"
+            }}
+            src={photoUrl}
+            alt="user-photo"
+          />
           <Link className="nav-link" to="/userDetails">
             User Details
           </Link>

@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import { Header } from "../components/common/Header";
-import { getEmail, getLoggedInStatus } from "../selectors";
+import { getEmail, getLoggedInStatus, getPhotoUrl } from "../selectors";
 
 function mapStateToProps(state) {
   return {
     email: getEmail(state),
-    isLoggedIn: getLoggedInStatus(state)
+    isLoggedIn: getLoggedInStatus(state),
+    photoUrl: getPhotoUrl(state)
   };
 }
 

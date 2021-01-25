@@ -1,12 +1,12 @@
 import { Component } from "react";
-import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+
+const PUBLIC_BASE_PATH = process.env.PUBLIC_BASE_PATH;
 export class UserDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      goBack: false,
       id: props.id,
       email: props.email,
       firstName: props.firstName,
@@ -19,15 +19,7 @@ export class UserDetails extends Component {
   applyChanges = (e) => {
     e.preventDefault();
     this.props.applyChangesThunk(this.state);
-    this.navigateBack();
-  };
-
-  cancelChanges = () => {
-    this.navigateBack();
-  };
-
-  navigateBack = () => {
-    this.setState({ goBack: true });
+    this.props.history.push(PUBLIC_BASE_PATH);
   };
 
   onChange = (e) => {
@@ -35,9 +27,6 @@ export class UserDetails extends Component {
   };
 
   render() {
-    if (this.state.goBack) {
-      return <Redirect />;
-    }
     return (
       <div className="container h-100">
         <div className="row h-100 justify-content-center align-items-center">
@@ -96,15 +85,8 @@ export class UserDetails extends Component {
                   placeholder="Password"
                 />
                 <br />
-                <button className="btn btn-block" type="submit" name="Apply">
+                <button name="apply" className="btn btn-block" type="submit">
                   Apply
-                </button>
-                <button
-                  className="btn btn-block"
-                  to="/"
-                  onClick={this.cancelChanges}
-                >
-                  Cancel
                 </button>
               </form>
             </div>
