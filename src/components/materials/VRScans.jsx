@@ -38,7 +38,7 @@ export const VRScans = () => {
 
   return (
     <div className="card p-3 overflow-auto h-100">
-      <div className="row mr-auto ml-auto" style={{maxWidth: 720}}>
+      <div className="row mx-auto" style={{maxWidth: 720}}>
         {scans.map((scan, index) => (
           <VRScan
             key={scan.id}
