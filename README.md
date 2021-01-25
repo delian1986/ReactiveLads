@@ -13,7 +13,7 @@ You can either register a new account or use the following account:
 
 Backend deployed at Heroku - live at https://reactivelads.herokuapp.com/
 
-![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/project-readme/Docs/example.gif)
+![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/master/Docs/example.gif)
 
 ## Team Members
 
@@ -61,8 +61,8 @@ Backend deployed at Heroku - live at https://reactivelads.herokuapp.com/
 
 ## Redux State Diagram
 
-![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/project-readme/Docs/redux-chart.png)
+![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/master/Docs/redux-chart.png)
 
 ## Main Components Diagram
 
-![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/project-readme/Docs/main-components-diagram.png)
+![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/master/Docs/main-components-diagram.png)
