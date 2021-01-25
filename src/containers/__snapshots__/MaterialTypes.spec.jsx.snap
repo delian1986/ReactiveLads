@@ -3,7 +3,7 @@
 exports[`tests <MaterialTypes/> component Test rendering component should render with given state from Redux store 1`] = `
 Array [
   <h5>
-    MaterialTypes
+    Material Types
   </h5>,
   <div>
     <div>
