@@ -1,11 +1,13 @@
 {
-  "name": "setupreactproject",
+  "name": "ReactiveLads",
   "version": "1.0.0",
   "contributors": [
     "aleksandar.g.ivanov@gmail.com",
-    "delian1914@gmail.com"
+    "delian1914@gmail.com",
+    "radkostanev@gmail.com",
+    "yordan.p.iliev@gmail.com"
   ],
-  "description": "homework - setup react",
+  "description": "React Upskill Project",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -31,13 +33,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/aliobalio/setupreactproject"
+    "url": "https://gitlab.com/radkostanev/ReactiveLads"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/aliobalio/setupreactproject/issues"
+    "url": "https://gitlab.com/radkostanev/ReactiveLads/issues"
   },
-  "homepage": "https://gitlab.com/aliobalio/setupreactproject#readme",
+  "homepage": "https://gitlab.com/radkostanev/ReactiveLads#README.md",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
