@@ -16,14 +16,14 @@ export const MaterialsContainer = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="bg-light card p-3 vh-100 d-flex flex-column">
+    <div className="h-100 overflow-hidden p-3">
+      <div className="bg-light card p-3 h-100 d-flex flex-column">
         <h2>VRScans</h2>
-        <div className="row overflow-hidden">
-          <div className="col-sm-3 h-100">
+        <div className="d-flex overflow-hidden">
+          <div className="p-1 h-100" style={{width: 300}}>
             <FiltersContainer />
           </div>
-          <div className="col-sm-9 h-100 d-flex flex-column">
+          <div className="p-1 h-100 w-100 d-flex flex-column">
             <Search />
             <VRScans />
           </div>

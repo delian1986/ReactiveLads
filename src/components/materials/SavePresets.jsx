@@ -50,7 +50,7 @@ export const SavePresets = () => {
 
   return (
     <div className="pr-2">
-      <h5>SavePresets</h5>
+      <h5>Saved Presets</h5>
       <div className="input-group input-group-sm mb-1">
         <input
           onChange={(e) => handleChangeTemplateName(e.target.value)}

@@ -16,7 +16,7 @@ const PUBLIC_BASE_PATH = process.env.PUBLIC_BASE_PATH;
 class App extends Component {
   render() {
     return (
-      <div className="app">
+      <div className="app d-flex flex-column vh-100">
         <Router basename={PUBLIC_BASE_PATH}>
           <Header />
           <Switch>
