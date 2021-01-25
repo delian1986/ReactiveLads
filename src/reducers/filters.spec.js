@@ -33,7 +33,7 @@ describe("filters reducers", () => {
 
   it("should handle SELECT_MATERIAL_TYPE when material is already added", function () {
     const typeId = 1;
-    const mockedInitialState = {...mockedState};
+    const mockedInitialState = { ...mockedState };
     mockedInitialState.selectedMaterialTypes = [typeId];
     expect(
       filters(mockedInitialState, {
@@ -56,7 +56,7 @@ describe("filters reducers", () => {
 
   it("should handle SELECT_COLOR when color is already added", function () {
     const colorId = 1;
-    const mockedInitialState = {...mockedState};
+    const mockedInitialState = { ...mockedState };
     mockedInitialState.selectedColors = [colorId];
     expect(
       filters(mockedInitialState, {
@@ -79,7 +79,7 @@ describe("filters reducers", () => {
 
   it("should handle SELECT_TAG when tag is already added", function () {
     const tagId = 1;
-    const mockedInitialState = {...mockedState};
+    const mockedInitialState = { ...mockedState };
     mockedInitialState.selectedTags = [tagId];
     expect(
       filters(mockedInitialState, {
