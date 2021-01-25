@@ -8,6 +8,7 @@ export const Header = (props) => {
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light">
       <Link className="navbar-brand mr-auto" to="/">
+        {console.log(photoUrl)}
         ReactiveLads
       </Link>
       {isLoggedIn ? (
@@ -23,7 +24,7 @@ export const Header = (props) => {
               height: "40px",
               borderRadius: "50%"
             }}
-            src={photoUrl}
+            src={photoUrl != null ? photoUrl : "/avatar_placeholder.png"}
             alt="user-photo"
           />
           <Link className="nav-link" to="/userDetails">
