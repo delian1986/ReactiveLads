@@ -11,7 +11,7 @@ export class MaterialTypes extends Component {
     } = this.props;
     return (
       <>
-        <h5>MaterialTypes</h5>
+        <h5>Material Types</h5>
         {materialTypes.length > 0 ? (
           <div>
             {materialTypes.map((materialType) => (
