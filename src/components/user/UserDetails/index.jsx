@@ -1,13 +1,12 @@
 import { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
 const PUBLIC_BASE_PATH = process.env.PUBLIC_BASE_PATH;
 export class UserDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      goBack: false,
       id: props.id,
       email: props.email,
       firstName: props.firstName,
@@ -20,7 +19,7 @@ export class UserDetails extends Component {
   applyChanges = (e) => {
     e.preventDefault();
     this.props.applyChangesThunk(this.state);
-    this.setState({ goBack: true });
+    this.props.history.push(PUBLIC_BASE_PATH);
   };
 
   onChange = (e) => {
@@ -28,9 +27,6 @@ export class UserDetails extends Component {
   };
 
   render() {
-    if (this.state.goBack) {
-      return <Redirect to={PUBLIC_BASE_PATH} />;
-    }
     return (
       <div className="container h-100">
         <div className="row h-100 justify-content-center align-items-center">
@@ -84,21 +80,14 @@ export class UserDetails extends Component {
                   name="password"
                   onChange={this.onChange}
                   required
+                  minLength="4"
                   type="password"
                   placeholder="Password"
                 />
                 <br />
-                <button
-                  className="btn btn-block"
-                  type="submit"
-                  name="Apply"
-                  onClick={this.applyChanges}
-                >
+                <button name="apply" className="btn btn-block" type="submit">
                   Apply
                 </button>
-                <Link className="btn btn-block" to="/">
-                  Cancel
-                </Link>
               </form>
             </div>
           </div>
@@ -113,5 +102,6 @@ UserDetails.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   photoUrl: PropTypes.string,
-  email: PropTypes.string
+  email: PropTypes.string,
+  password: PropTypes.string
 };

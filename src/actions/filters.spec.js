@@ -72,7 +72,7 @@ describe("filters actions", () => {
 
   describe("presets actions", () => {
     it("should create action for setAllFilters", function () {
-      const filters = {selectedTags: []};
+      const filters = { selectedTags: [] };
 
       const expectedAction = {
         type: SET_ALL_FILTERS,
