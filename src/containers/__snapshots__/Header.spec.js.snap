@@ -28,6 +28,7 @@ exports[`Header container tests Logged in user should match logged in snapshot 1
   <img
     alt="user-photo"
     className="circle-round"
+    src="/avatar_placeholder.png"
     style={
       Object {
         "borderRadius": "50%",
