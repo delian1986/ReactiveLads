@@ -25,25 +25,25 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 const StorageService = require("../../src/services/storageService");
 
-Cypress.Commands.add("login", async ()=>{
+Cypress.Commands.add("login", async (inputEmail, inputPassword)=>{
     await fetch("https://reactivelads.herokuapp.com/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email:"delian1914@abv.bg", password: "1234" })
+        body: JSON.stringify({ email:inputEmail, password: inputPassword })
     })
         .then((data) => data.json())
         .then((data) => {
             if (data.accessToken) {
                 const token = data.accessToken;
                 StorageService.saveToken(token);
-                StorageService.saveUserInfo({ email: "delian1914@abv.bg" });
+                StorageService.saveUserInfo({ email: inputEmail });
             } else {
                 throw new Error(data);
             }
         })
         .catch((error) => {
-            alert("err on cypress login... "+error);
+            alert("err on cypress login... " + error);
         });
 });

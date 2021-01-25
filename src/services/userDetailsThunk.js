@@ -26,7 +26,7 @@ export const userDetailsThunk = ({
   })
     .then((data) => data.json())
     .then((user) => {
-      dispatch(updateUser(user));
       StorageService.saveUserInfo(user);
+      dispatch(updateUser(user));
     });
 };

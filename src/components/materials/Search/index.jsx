@@ -33,6 +33,7 @@ export class Search extends Component {
   render() {
     return (
       <input
+        name="searchBox"
         type="text"
         className="form-control form-control-sm mb-3"
         placeholder="Search"
