@@ -1,4 +1,7 @@
-describe("Authentication", ()=>{
+describe("Authentication", ()=> {
+    const user = "delian1914@abv.bg";
+    const pass = "1234";
+    
     it("anonymous should redirect to login", function () {
         cy.clearLocalStorage();
         cy.visit("http://localhost:3000");
@@ -7,7 +10,7 @@ describe("Authentication", ()=>{
     });
 
     it("homepage should be visited by authorized users", function () {
-        cy.login();
+        cy.login(user, pass);
         cy.visit("http://localhost:3000");
 
         cy.url().should("include","/");
@@ -15,7 +18,7 @@ describe("Authentication", ()=>{
     });
 
     it("login page cannot be assessed by authorized users", function () {
-        cy.login();
+        cy.login(user, pass);
         cy.visit("http://localhost:3000/login");
 
         cy.url().should("include","/");
@@ -23,7 +26,7 @@ describe("Authentication", ()=>{
     });
 
     it("should signUp cannot be assessed by authorized users", function () {
-        cy.login();
+        cy.login(user, pass);
         cy.visit("http://localhost:3000/signUp");
 
         cy.url().should("include","/");

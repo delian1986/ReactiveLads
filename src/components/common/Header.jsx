@@ -27,7 +27,7 @@ export const Header = (props) => {
             src={photoUrl != null ? photoUrl : "/avatar_placeholder.png"}
             alt="user-photo"
           />
-          <Link className="nav-link" to="/userDetails">
+          <Link name="userDetails" className="nav-link" to="/userDetails">
             User Details
           </Link>
           <Logout />

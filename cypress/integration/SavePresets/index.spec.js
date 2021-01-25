@@ -1,6 +1,8 @@
 describe("<SavePresets/> e2e", () => {
+    const user = "delian1914@abv.bg";
+    const pass = "1234";
     beforeEach(() => {
-        cy.login();
+        cy.login(user, pass);
         cy.visit("http://localhost:3000/");
     });
 
