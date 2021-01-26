@@ -30,4 +30,13 @@ describe("tests <Tags/> component", () => {
       expect(component.toJSON()).toMatchSnapshot();
     });
   });
+  describe("Actions", () => {
+    it("should dispatch an action on button click", () => {
+      renderer.act(() => {
+        component.root.findByType("input").props.onChange();
+      });
+
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+    });
+  });
 });
