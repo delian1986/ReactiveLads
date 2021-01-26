@@ -13,7 +13,8 @@ describe("Header container tests", () => {
       store = mockStore({
         auth: {
           email: "test@test.bg",
-          isLoggedIn: true
+          isLoggedIn: true,
+          photoUrl: null
         }
       });
       store.dispatch = jest.fn();
@@ -28,6 +29,31 @@ describe("Header container tests", () => {
 
     it("should match logged in snapshot", function () {
       expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it("should match image placeholder", function () {
+      expect(component.root.findByType("img").props.src).toEqual(
+        "/avatar_placeholder.png"
+      );
+    });
+
+    it("should match image url", function () {
+      store = mockStore({
+        auth: {
+          email: "test@test.bg",
+          isLoggedIn: true,
+          photoUrl: "superValidSrc"
+        }
+      });
+      store.dispatch = jest.fn();
+      component = renderer.create(
+        <Provider store={store}>
+          <BrowserRouter>
+            <Header />
+          </BrowserRouter>
+        </Provider>
+      );
+      expect(component.root.findByType("img").props.src).toEqual("superValidSrc");
     });
   });
   describe("Anonymous user", () => {

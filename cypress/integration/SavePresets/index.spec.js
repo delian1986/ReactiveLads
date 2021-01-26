@@ -1,4 +1,4 @@
-describe("<SavePresets/> e2e", () => {
+describe("<SavedPresets/> e2e", () => {
     const user = "delian1914@abv.bg";
     const pass = "1234";
     beforeEach(() => {
@@ -10,8 +10,8 @@ describe("<SavePresets/> e2e", () => {
         cy.clearLocalStorage();
     });
 
-    it("<SavePresets/> should be loaded", function () {
-        cy.get("h5").first().should("contain", "SavePresets");
+    it("<SavedPresets/> should be loaded", function () {
+        cy.get("h5").first().should("contain", "Saved Presets");
     });
 
     it("should apply and remove filters", function () {

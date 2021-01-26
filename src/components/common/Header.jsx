@@ -8,7 +8,6 @@ export const Header = (props) => {
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light">
       <Link className="navbar-brand mr-auto" to="/">
-        {console.log(photoUrl)}
         ReactiveLads
       </Link>
       {isLoggedIn ? (
