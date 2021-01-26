@@ -20,7 +20,7 @@ export const MaterialsContainer = () => {
       <div className="bg-light card p-3 h-100 d-flex flex-column">
         <h2>VRScans</h2>
         <div className="d-flex overflow-hidden">
-          <div className="p-1 h-100" style={{width: 300}}>
+          <div className="p-1 h-100" style={{ width: 300 }}>
             <FiltersContainer />
           </div>
           <div className="p-1 h-100 w-100 d-flex flex-column">
