@@ -18,7 +18,7 @@ export class UserDetails extends Component {
 
   applyChanges = (e) => {
     e.preventDefault();
-    this.props.applyChangesThunk(this.state);
+    this.props.applyChangesAsync(this.state);
     this.props.history.push(PUBLIC_BASE_PATH);
   };
 

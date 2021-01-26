@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { UserDetails } from "../components/user/UserDetails/index";
 import { bindActionCreators } from "redux";
-import { userDetailsThunk } from "../services/userDetailsThunk.js";
+import { getUserDetailsAsync } from "../store/actions/auth";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      applyChangesThunk: ({ id, firstName, lastName, photoUrl, email, password }) =>
-        userDetailsThunk({ id, firstName, lastName, photoUrl, email, password })
+      applyChangesAsync: ({ id, firstName, lastName, photoUrl, email, password }) =>
+        getUserDetailsAsync({ id, firstName, lastName, photoUrl, email, password })
     },
     dispatch
   );

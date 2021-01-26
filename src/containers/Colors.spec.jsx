@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 import Colors from "./Colors";
 import { mount } from "enzyme";
 import { ColorCheckbox } from "../components/materials/ColorCheckbox";
-import { selectColor } from "../actions/filters";
+import { selectColor } from "../store/actions/filters";
 
 const mockStore = configureStore([]);
 

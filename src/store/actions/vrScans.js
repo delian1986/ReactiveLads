@@ -1,13 +1,26 @@
-import { addVrScans, resetVrScans } from "../actions/vrScans";
+import { ADD_VR_SCANS, RESET_VR_SCANS } from "./constants";
 const API_BASE_URL = process.env.API_BASE_URL;
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
-import { setPage } from "../actions/page";
+import { setPage } from "./page";
 import { getIsInFavoritesMode, getPage, getToken } from "../selectors/index";
-import { loadMoreDisable } from "../actions/loadMore";
-import { handleResponse } from "./handleResponse";
-import { isVrScansLoaded } from "../actions/isVrScansLoaded";
+import { loadMoreDisable } from "./loadMore";
+import { handleResponse } from "../../services/handleResponse";
+import { isVrScansLoaded } from "./isVrScansLoaded";
 
-export const fetchVrScansThunk = () => async (dispatch, getState) => {
+export const addVrScans = (vrScans) => {
+  return {
+    type: ADD_VR_SCANS,
+    payload: vrScans
+  };
+};
+
+export const resetVrScans = () => {
+  return {
+    type: RESET_VR_SCANS
+  };
+};
+
+export const fetchVrScansAsync = () => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
   const currPage = getPage(state);
@@ -61,4 +74,4 @@ export const fetchVrScansThunk = () => async (dispatch, getState) => {
   dispatch(isVrScansLoaded(true));
 };
 
-export default fetchVrScansThunk;
+export default fetchVrScansAsync;

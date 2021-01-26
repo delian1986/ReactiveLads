@@ -1,7 +1,7 @@
-import { resetVrScans } from "./actions/vrScans";
-import { setPage } from "./actions/page";
-import { fetchVrScansThunk } from "./services/fetchVrScansThunk";
-import { loadMoreEnable } from "./actions/loadMore";
+import { resetVrScans } from "../store/actions/vrScans";
+import { setPage } from "../store/actions/page";
+import { fetchVrScansAsync } from "../store/actions/vrScans";
+import { loadMoreEnable } from "../store/actions/loadMore";
 
 export const filterMiddleware = (store) => (next) => (action) => {
   const before = store.getState();
@@ -13,6 +13,6 @@ export const filterMiddleware = (store) => (next) => (action) => {
     store.dispatch(setPage(0));
     store.dispatch(resetVrScans());
     store.dispatch(loadMoreEnable());
-    store.dispatch(fetchVrScansThunk());
+    store.dispatch(fetchVrScansAsync());
   }
 };

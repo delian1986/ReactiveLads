@@ -8,7 +8,7 @@ import {
   STOP_PENDING,
   UPDATE_USER
 } from "../actions/constants";
-import StorageService from "../services/storageService";
+import StorageService from "../../services/storageService";
 
 const user = StorageService.getUser();
 const token = StorageService.getToken();

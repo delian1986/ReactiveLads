@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Header } from "../components/common/Header";
-import { getEmail, getLoggedInStatus, getPhotoUrl } from "../selectors";
+import { getEmail, getLoggedInStatus, getPhotoUrl } from "../store/selectors";
 
 function mapStateToProps(state) {
   return {

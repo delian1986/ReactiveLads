@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { logoutThunk } from "../services/authThunk";
+import { logoutAsync } from "../store/actions/auth";
 import { Logout as LogoutView } from "../components/user/Logout";
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      logout: () => logoutThunk()
+      logout: () => logoutAsync()
     },
     dispatch
   );

@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MaterialTypes } from "../components/materials/MaterialTypes";
-
-import { selectMaterialType } from "../actions/filters";
+import { selectMaterialType } from "../store/actions/filters";
 
 const mapStateToProps = (state) => {
   return {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { FiltersContainer } from "./FiltersContainer";
 import Search from "../../containers/Search";
 import { VRScans } from "./VRScans";
-import { homeInitThunk } from "../../services/homeInitThunk";
+import { homeInitAsync } from "../../store/actions/isHomeLoaded";
 import { useDispatch, useSelector } from "react-redux";
 
 export const MaterialsContainer = () => {
@@ -11,7 +11,7 @@ export const MaterialsContainer = () => {
 
   useEffect(() => {
     if (!isHomeLoaded) {
-      dispatch(homeInitThunk());
+      dispatch(homeInitAsync());
     }
   }, []);
 
@@ -20,7 +20,7 @@ export const MaterialsContainer = () => {
       <div className="bg-light card p-3 h-100 d-flex flex-column">
         <h2>VRScans</h2>
         <div className="d-flex overflow-hidden">
-          <div className="p-1 h-100" style={{width: 300}}>
+          <div className="p-1 h-100" style={{ width: 300 }}>
             <FiltersContainer />
           </div>
           <div className="p-1 h-100 w-100 d-flex flex-column">

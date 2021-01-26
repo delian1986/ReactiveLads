@@ -1,11 +1,11 @@
 import { useCallback, useRef } from "react";
 import { VRScan } from "./VRScan";
 import { useDispatch, useSelector } from "react-redux";
-import fetchVrScansThunk from "../../services/fetchVrScansThunk";
+import fetchVrScansAsync from "../../store/actions/vrScans";
 import {
-  addFavoritesThunk,
-  removeFavoritesThunk
-} from "../../services/favoritesThunk";
+  addFavoritesAsync,
+  removeFavoritesAsync
+} from "../../store/actions/favorites";
 
 export const VRScans = () => {
   const scans = useSelector((state) => state.vrScans);
@@ -22,23 +22,23 @@ export const VRScans = () => {
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && loadMore) {
         console.log("Load more items...");
-        dispatch(fetchVrScansThunk());
+        dispatch(fetchVrScansAsync());
       }
     });
     if (e) observer.current.observe(e);
   });
 
   const pushToFavorites = (scanId) => {
-    dispatch(addFavoritesThunk({ vrscanId: scanId, userId }));
+    dispatch(addFavoritesAsync({ vrscanId: scanId, userId }));
   };
 
   const removeFromFavorites = (favData) => {
-    dispatch(removeFavoritesThunk(favData[0].id));
+    dispatch(removeFavoritesAsync(favData[0].id));
   };
 
   return (
     <div className="card p-3 overflow-auto h-100">
-      <div className="row mx-auto w-100" style={{maxWidth: 720}}>
+      <div className="row mx-auto w-100" style={{ maxWidth: 720 }}>
         {scans.map((scan, index) => (
           <VRScan
             key={scan.id}

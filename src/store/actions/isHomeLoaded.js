@@ -1,20 +1,25 @@
+import { IS_HOME_LOADED } from "./constants";
 import { getEmail, getPage, getToken } from "../selectors";
-import { handleResponse } from "./handleResponse";
-import { addMaterialTypes } from "../actions/materialTypes";
-import { addColors } from "../actions/colors";
-import { addTags } from "../actions/tags";
-import { addVrScans } from "../actions/vrScans";
-import { setPage } from "../actions/page";
-import { isHomeLoaded } from "../actions/isHomeLoaded";
-import { updateUser } from "../actions/auth";
-import StorageService from "./storageService";
-import { initFavorites } from "../actions/favorites";
-import { isVrScansLoaded } from "../actions/isVrScansLoaded";
-import { initSavePresets } from "../actions/savePresets";
+import { handleResponse } from "../../services/handleResponse";
+import { addMaterialTypes } from "./materialTypes";
+import { addColors } from "./colors";
+import { addTags } from "./tags";
+import { addVrScans } from "./vrScans";
+import { setPage } from "./page";
+import { updateUser } from "./auth";
+import StorageService from "../../services/storageService";
+import { initFavorites } from "./favorites";
+import { isVrScansLoaded } from "./isVrScansLoaded";
+import { initSavePresets } from "./savePresets";
 const VRSCANS_PER_PAGE = process.env.VRSCANS_PER_PAGE;
 const API_BASE_URL = process.env.API_BASE_URL;
 
-export const homeInitThunk = () => async (dispath, getState) => {
+export const isHomeLoaded = (isLoaded) => ({
+  type: IS_HOME_LOADED,
+  payload: isLoaded
+});
+
+export const homeInitAsync = () => async (dispath, getState) => {
   const state = getState();
   const token = getToken(state);
   const email = getEmail(state);

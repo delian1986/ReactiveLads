@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { LoginForm as Login } from "../components/user/LoginForm";
 import { bindActionCreators } from "redux";
-import { loginThunk } from "../services/authThunk";
-import { getMessage, getIsAuthPending } from "../selectors";
+import { loginAsync } from "../store/actions/auth";
+import { getMessage, getIsAuthPending } from "../store/selectors";
 
 const mapStateToProps = (state) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      login: ({ email, password }) => loginThunk({ email, password })
+      login: ({ email, password }) => loginAsync({ email, password })
     },
     dispatch
   );

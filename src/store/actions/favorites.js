@@ -1,10 +1,30 @@
-import { handleResponse } from "./handleResponse";
-import { addFavorite, removeFavorite } from "../actions/favorites";
+import { ADD_FAVORITE, INIT_FAVORITES, REMOVE_FAVORITE } from "./constants";
+import { handleResponse } from "../../services/handleResponse";
 import { getToken } from "../selectors";
-
 const API_BASE_URL = process.env.API_BASE_URL;
 
-export const addFavoritesThunk = ({ vrscanId, userId }) => async (
+export const initFavorites = (favs) => {
+  return {
+    type: INIT_FAVORITES,
+    payload: favs
+  };
+};
+
+export const addFavorite = (fav) => {
+  return {
+    type: ADD_FAVORITE,
+    payload: fav
+  };
+};
+
+export const removeFavorite = (fav) => {
+  return {
+    type: REMOVE_FAVORITE,
+    payload: fav
+  };
+};
+
+export const addFavoritesAsync = ({ vrscanId, userId }) => async (
   dispatch,
   getState
 ) => {
@@ -27,7 +47,7 @@ export const addFavoritesThunk = ({ vrscanId, userId }) => async (
     });
 };
 
-export const removeFavoritesThunk = (id) => async (dispatch, getState) => {
+export const removeFavoritesAsync = (id) => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
   await fetch(`${API_BASE_URL}/favorites/${id}`, {

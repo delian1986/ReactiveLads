@@ -1,10 +1,43 @@
+import {
+  ADD_SAVE_PRESET,
+  INIT_SAVE_PRESETS,
+  REMOVE_SAVE_PRESET,
+  SET_PRESET_ID
+} from "./constants";
 import { getToken } from "../selectors";
-import { handleResponse } from "./handleResponse";
-import { addSavePreset, removeSavePreset } from "../actions/savePresets";
+import { handleResponse } from "../../services/handleResponse";
 
 const API_BASE_URL = process.env.API_BASE_URL;
 
-export const addPresetThink = (title) => async (dispatch, getState) => {
+export const initSavePresets = (presets) => {
+  return {
+    type: INIT_SAVE_PRESETS,
+    payload: presets
+  };
+};
+
+export const setPresetId = (presetId) => {
+  return {
+    type: SET_PRESET_ID,
+    payload: presetId
+  };
+};
+
+export const addSavePreset = (preset) => {
+  return {
+    type: ADD_SAVE_PRESET,
+    payload: preset
+  };
+};
+
+export const removeSavePreset = (preset) => {
+  return {
+    type: REMOVE_SAVE_PRESET,
+    payload: preset
+  };
+};
+
+export const addPresetAsync = (title) => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
   const presetData = {
@@ -33,7 +66,7 @@ export const addPresetThink = (title) => async (dispatch, getState) => {
     });
 };
 
-export const removePresetThunk = (id) => async (dispatch, getState) => {
+export const removePresetAsync = (id) => async (dispatch, getState) => {
   const state = getState();
   const token = getToken(state);
 

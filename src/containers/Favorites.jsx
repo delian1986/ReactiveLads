@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { toggleFavoritesMode } from "../actions/filters";
+import { toggleFavoritesMode } from "../store/actions/filters";
 import { Favorites } from "../components/materials/Favorites";
 
 const mapStateToProps = (state) => {

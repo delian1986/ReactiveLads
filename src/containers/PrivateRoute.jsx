@@ -1,4 +1,4 @@
-import { getLoggedInStatus } from "../selectors";
+import { getLoggedInStatus } from "../store/selectors";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { connect } from "react-redux";
 

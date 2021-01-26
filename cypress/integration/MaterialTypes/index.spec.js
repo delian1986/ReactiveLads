@@ -11,7 +11,7 @@ describe("<MaterialTypes/> e2e", () => {
     });
 
     it("<MaterialTypes/> should be loaded", function () {
-        cy.get("h5").eq(2).should("contain", "MaterialTypes");
+        cy.get("h5").eq(2).should("contain", "Material Types");
     });
 
     it("should apply and remove material type filters", function () {

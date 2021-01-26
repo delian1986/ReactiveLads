@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { resetAllFilters, setAllFilters } from "../../actions/filters";
-import { setPresetId } from "../../actions/savePresets";
+import { resetAllFilters, setAllFilters } from "../../store/actions/filters";
+import { setPresetId } from "../../store/actions/savePresets";
 import { useState } from "react";
-import { addPresetThink, removePresetThunk } from "../../services/savePresetsThunk";
+import { addPresetAsync, removePresetAsync } from "../../store/actions/savePresets";
 
 export const SavePresets = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export const SavePresets = () => {
   };
 
   const savePresetTemplate = () => {
-    dispatch(addPresetThink(templateTitle));
+    dispatch(addPresetAsync(templateTitle));
     setTemplateTitle("");
   };
 
@@ -44,7 +44,7 @@ export const SavePresets = () => {
       return;
     }
 
-    dispatch(removePresetThunk(presetId));
+    dispatch(removePresetAsync(presetId));
     dispatch(resetAllFilters());
   };
 

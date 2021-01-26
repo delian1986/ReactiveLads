@@ -1,6 +1,3 @@
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import fetchMock from "fetch-mock";
 import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
@@ -9,9 +6,79 @@ import {
   REGISTER_SUCCESS,
   SET_MESSAGE,
   START_PENDING,
-  STOP_PENDING
-} from "../actions/constants";
-import { loginThunk, logoutThunk, registerThunk } from "./authThunk";
+  STOP_PENDING,
+  UPDATE_USER
+} from "./constants";
+import {
+  getUserDetailsAsync,
+  login,
+  loginFailed,
+  logout,
+  register,
+  registerFailed,
+  startPending,
+  stopPending
+} from "./auth";
+
+describe("auth actions", () => {
+  it("should create an action to register success", function () {
+    const user = { authToken: "mocked_token" };
+    const expectedAction = {
+      type: REGISTER_SUCCESS,
+      payload: user
+    };
+    expect(register(user)).toEqual(expectedAction);
+  });
+
+  it("should create an action to register fail", function () {
+    const expectedAction = {
+      type: REGISTER_FAIL
+    };
+    expect(registerFailed()).toEqual(expectedAction);
+  });
+
+  it("should create an action to login success", function () {
+    const user = { authToken: "mocked_token" };
+    const expectedAction = {
+      type: LOGIN_SUCCESS,
+      payload: user
+    };
+    expect(login(user)).toEqual(expectedAction);
+  });
+
+  it("should create an action to login fail", function () {
+    const expectedAction = {
+      type: LOGIN_FAIL
+    };
+    expect(loginFailed()).toEqual(expectedAction);
+  });
+
+  it("should create an action to logout", function () {
+    const expectedAction = {
+      type: LOGOUT
+    };
+    expect(logout()).toEqual(expectedAction);
+  });
+
+  it("should create an action to start pending", function () {
+    const expectedAction = {
+      type: START_PENDING
+    };
+    expect(startPending()).toEqual(expectedAction);
+  });
+
+  it("should create an action to stop pending", function () {
+    const expectedAction = {
+      type: STOP_PENDING
+    };
+    expect(stopPending()).toEqual(expectedAction);
+  });
+});
+
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import fetchMock from "fetch-mock";
+import { loginAsync, logoutAsync, registerAsync } from "./auth";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -33,7 +100,7 @@ describe("async auth actions", () => {
       },
       accessToken: "successful_auth"
     });
-    return store.dispatch(loginThunk(userCredentials)).then(() => {
+    return store.dispatch(loginAsync(userCredentials)).then(() => {
       const actualActions = store.getActions().map((action) => action.type);
       expect(actualActions).toEqual(expectedActions);
     });
@@ -50,7 +117,7 @@ describe("async auth actions", () => {
       },
       message: "Login fail"
     });
-    return store.dispatch(loginThunk(userCredentials)).then(() => {
+    return store.dispatch(loginAsync(userCredentials)).then(() => {
       const actualActions = store.getActions().map((action) => action.type);
       expect(actualActions).toEqual(expectedActions);
     });
@@ -67,7 +134,7 @@ describe("async auth actions", () => {
       },
       message: "Login fail"
     });
-    return store.dispatch(loginThunk(userCredentials)).then(() => {
+    return store.dispatch(loginAsync(userCredentials)).then(() => {
       jest.useFakeTimers();
       setTimeout(() => {
         const actualActions = store.getActions().map((action) => action.type);
@@ -88,7 +155,7 @@ describe("async auth actions", () => {
       },
       accessToken: "successful_auth"
     });
-    return store.dispatch(registerThunk(userCredentials)).then(() => {
+    return store.dispatch(registerAsync(userCredentials)).then(() => {
       const actualActions = store.getActions().map((action) => action.type);
       expect(actualActions).toEqual(expectedActions);
     });
@@ -110,7 +177,7 @@ describe("async auth actions", () => {
       },
       message: "register fail"
     });
-    return store.dispatch(registerThunk(userCredentials)).then(() => {
+    return store.dispatch(registerAsync(userCredentials)).then(() => {
       const actualActions = store.getActions().map((action) => action.type);
       expect(actualActions).toEqual(expectedActions);
     });
@@ -120,8 +187,32 @@ describe("async auth actions", () => {
     const store = mockStore({ auth: {} });
     const expectedActions = [LOGOUT];
 
-    store.dispatch(logoutThunk());
+    store.dispatch(logoutAsync());
     const actualActions = store.getActions().map((action) => action.type);
     expect(actualActions).toEqual(expectedActions);
+  });
+
+  it("should update user", function () {
+    const user = {
+      id: 1,
+      firstName: "fn",
+      lastName: "ln",
+      photoUrl: "pu",
+      email: "em",
+      password: "ps"
+    };
+    const store = mockStore({ auth: {} });
+    const expectedActions = [UPDATE_USER];
+
+    fetchMock.patchOnce(`${API_BASE_URL}/users/1`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    });
+    return store.dispatch(getUserDetailsAsync(user)).then(() => {
+      const actualActions = store.getActions().map((action) => action.type);
+      expect(actualActions).toEqual(expectedActions);
+    });
   });
 });

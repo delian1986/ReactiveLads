@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Colors } from "../components/materials/Colors";
 
-import { selectColor } from "../actions/filters";
+import { selectColor } from "../store/actions/filters";
 
 const mapStateToProps = (state) => {
   return {
