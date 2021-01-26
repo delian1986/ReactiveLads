@@ -40,6 +40,7 @@ exports[`Header container tests Logged in user should match logged in snapshot 1
     aria-current={null}
     className="nav-link"
     href="/userDetails"
+    name="userDetails"
     onClick={[Function]}
   >
     User Details

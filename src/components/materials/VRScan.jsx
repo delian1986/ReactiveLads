@@ -14,7 +14,7 @@ export class VRScan extends Component {
       thisRef
     } = this.props;
     let favoriteClass, favoriteOnClick;
-    if(favoriteData.length > 0) {
+    if (favoriteData.length > 0) {
       favoriteClass = "bi-suit-heart-fill";
       favoriteOnClick = () => removeFromFavorites(favoriteData);
     } else {
@@ -30,10 +30,10 @@ export class VRScan extends Component {
             <h5 className="card-title pt-2 mb-0">{name}</h5>
             <div className="card-text">{fileName}</div>
             <i
-                className={`bi ${favoriteClass} position-absolute`}
-                style={{top: 0, left: 5}}
-                onClick={favoriteOnClick}
-              />
+              className={`bi ${favoriteClass} position-absolute`}
+              style={{ top: 0, left: 5 }}
+              onClick={favoriteOnClick}
+            />
           </div>
         </div>
       </div>
