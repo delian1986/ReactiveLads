@@ -12,8 +12,9 @@ You can either register a new account or use the following account:
 > please note we're using free hosting and the initial request might take up to a minute to load
 
 Backend deployed at Heroku - live at https://reactivelads.herokuapp.com/
+You can clone it from https://github.com/delian1986/reactiveladsapi
 
-![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/master/Docs/example.gif)
+![Alt text](https://github.com/delian1986/ReactiveLads/blob/master/Docs/example.gif)
 
 ## Team Members
 
@@ -61,8 +62,8 @@ Backend deployed at Heroku - live at https://reactivelads.herokuapp.com/
 
 ## Redux State Diagram
 
-![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/master/Docs/redux-chart.png)
+![Alt text](https://github.com/delian1986/ReactiveLads/blob/master/Docs/redux-chart.png)
 
 ## Main Components Diagram
 
-![Alt text](https://gitlab.com/radkostanev/ReactiveLads/-/raw/master/Docs/main-components-diagram.png)
+![Alt text](https://github.com/delian1986/ReactiveLads/blob/master/Docs/main-components-diagram.png)
